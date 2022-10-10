@@ -52,7 +52,8 @@ export const Learn = () => {
             <div className={s.headerBlock}>
                 <LinkArrow className={s.link} to={'/packs'} name={'Back to Packs List'}/>
                 <h1>Learn "{packName}"</h1>
-                <div className={s.block}>
+            </div>
+            <div className={s.block}>
                     {isInitializedPage &&
                         <>
                             {questionMode
@@ -82,7 +83,6 @@ export const Learn = () => {
 
                         </>}
                 </div>
-            </div>
         </div>
 
 

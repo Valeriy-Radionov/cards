@@ -6,6 +6,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import {CardType, Grades} from "../../../api/cards/cards-api";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import {makeStyles} from "@mui/material";
+import {Label} from "@mui/icons-material";
 
 
 type AnswerPropsType = {
@@ -18,7 +20,6 @@ type AnswerPropsType = {
 
 export const Answer: React.FC<AnswerPropsType> = (props) => {
 
-
     return (
         <div className={s.main}>
             <div className={s.block}>
@@ -26,8 +27,9 @@ export const Answer: React.FC<AnswerPropsType> = (props) => {
                     <span><b>Answer:</b></span>
                     <span>{props.card && props.card.answer}</span>
                 </div>
+                <label>Rate yourself:</label>
                 <FormControl>
-                    <FormLabel id="radio-buttons-group-label">Rate yourself:</FormLabel>
+                    {/*<FormLabel className="MenuItem" id="radio-buttons-group-label" sx={{padding: "0"}}>Rate yourself:</FormLabel>*/}
                     <RadioGroup
                         aria-labelledby="radio-buttons-group-label"
                         defaultValue={Grades.DidNotKnow}
