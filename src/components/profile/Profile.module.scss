@@ -1,0 +1,87 @@
+@import "../../common/styles/mixins";
+
+.container {
+  @include width-height(100%, 100%);
+  display: flex;
+  justify-content: center;
+  padding: 120px 0 0 0;
+  position: relative;
+
+  .link {
+    position: absolute;
+    left: 168px;
+    top: 84px;
+    color: #FFFFFF;
+
+    a {
+      color: black;
+
+      img {
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  .block {
+    @include width-height(413px, 360px);
+    background-color: #FFFFFF;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2px;
+
+    h1 {
+      margin: 27px 0 0 0;
+    }
+
+    .imgBlock {
+      position: relative;
+      margin: 30px 0 0 0;
+      display: flex;
+      flex-direction: column;
+
+      .avatar {
+        @include width-height(96px, 96px);
+        @include backgroundImg(cover, no-repeat, center);
+        background-color: black;
+        border-radius: 55px;
+      }
+
+      .updatePhoto {
+        @include width-height(32px, 32px);
+        position: absolute;
+        left: 65px;
+        top: 60px;
+        background-color: #808080;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .email {
+      margin: 19px 0 0 0;
+      opacity: 0.5;
+    }
+
+    .logoutBtn {
+      @include width-height(127px, 36px);
+      @include font (normal, 500, 16px, 20px);
+      opacity: 0.8;
+      text-align: center;
+      letter-spacing: 0.01em;
+      margin: 29px 0 0 0;
+      border: none;
+      background: #FCFCFC;
+      box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-radius: 30px;
+      transition: 0.5s;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+    }
+  }
+}

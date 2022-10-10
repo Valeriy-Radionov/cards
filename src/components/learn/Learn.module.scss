@@ -1,0 +1,51 @@
+@import "../../common/styles/mixins";
+
+.container {
+  height: 100vh;
+  background: rgba(138,150,161,0.52);
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+
+  .headerBlock {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+    .link {
+      position: absolute;
+      left: 142px;
+      top: 84px;
+      color: #FFFFFF;
+
+      a {
+        color: black;
+
+        img {
+          margin: 0 10px 0 0;
+        }
+      }
+    }
+
+    .block {
+      @include width-height(413px, 360px);
+      background-color: #FFFFFF;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 2px;
+
+      h1 {
+        margin: 27px 0 0 0;
+      }
+
+      .button {
+        width: 373px;
+        height: 36px;
+        align-items: center;
+      }
+    }
+  }
+}
