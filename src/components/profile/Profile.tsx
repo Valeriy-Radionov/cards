@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, useRef } from 'react';
 import s from './Profile.module.scss'
 import ProfileRename from "./profileRename/ProfileRename";
 import {  updateUserTC} from "../../bll/profileReducer";
@@ -14,6 +14,18 @@ export const Profile = () => {
     const dispatch = useAppDispatch
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const user = useAppSelector(state => state.profile.user)
+
+    const inputRef = useRef<HTMLInputElement>(null)
+    const selectFileHandler = () => {
+        inputRef && inputRef.current?.click();
+    };
+
+    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            const file = e.target.files[0]
+            console.log('file: ', file)
+        }
+    }
 
     const logout = () => {
         dispatch(logoutTC())
@@ -33,8 +45,10 @@ export const Profile = () => {
                 <h1>Personal information</h1>
                 <div className={s.imgBlock}>
                     <div className={s.avatar} style={backgroundImg(user? user.avatar || updateAva : '')}></div>
-                    <div className={s.updatePhoto}>
-                        <img src={updateAva} alt='' className={s.updateAva}/>
+                    {/*update avatar block*/}
+                    <div className={s.blockUpdatePhoto}>
+                        <button onClick={selectFileHandler} style={backgroundImg(updateAva)} className={s.updatePhoto}></button>
+                        <input ref={inputRef} type={"file"} style={{display: "none"}} accept={"image/*"} onChange={uploadHandler}></input>
                     </div>
                 </div>
                 <ProfileRename name={user?  user.name : ''} changeTask={updateUsers}/>

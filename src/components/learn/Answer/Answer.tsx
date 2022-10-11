@@ -1,14 +1,10 @@
 import React from 'react'
 import s from "./Answer.module.scss";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import {CardType, Grades} from "../../../api/cards/cards-api";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
-import {makeStyles} from "@mui/material";
-import {Label} from "@mui/icons-material";
-
 
 type AnswerPropsType = {
     card_id: string | null,
@@ -29,7 +25,6 @@ export const Answer: React.FC<AnswerPropsType> = (props) => {
                 </div>
                 <label>Rate yourself:</label>
                 <FormControl>
-                    {/*<FormLabel className="MenuItem" id="radio-buttons-group-label" sx={{padding: "0"}}>Rate yourself:</FormLabel>*/}
                     <RadioGroup
                         aria-labelledby="radio-buttons-group-label"
                         defaultValue={Grades.DidNotKnow}

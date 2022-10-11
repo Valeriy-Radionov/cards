@@ -1,5 +1,4 @@
 @import "../../common/styles/mixins";
-
 .container {
   @include width-height(100%, 100%);
   display: flex;
@@ -44,20 +43,32 @@
       .avatar {
         @include width-height(96px, 96px);
         @include backgroundImg(cover, no-repeat, center);
-        background-color: black;
+        background-color: white;
         border-radius: 55px;
       }
 
-      .updatePhoto {
+      .blockUpdatePhoto {
         @include width-height(32px, 32px);
         position: absolute;
         left: 65px;
         top: 60px;
         background-color: #808080;
-        border-radius: 20px;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
+
+
+        .updatePhoto {
+          @include width-height(100%, 100%);
+          @include backgroundImg(88%, no-repeat, center);
+          background-color: #366efe;
+          border-radius: 50%;
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(82,161,55,0.52);
+          }
+        }
       }
     }
 
