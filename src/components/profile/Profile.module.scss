@@ -44,7 +44,7 @@
         @include width-height(96px, 96px);
         @include backgroundImg(cover, no-repeat, center);
         background-color: white;
-        border-radius: 55px;
+        border-radius: 50%;
       }
 
       .blockUpdatePhoto {

@@ -1,0 +1,10 @@
+@import "src/common/styles/mixins";
+
+.packImage {
+  @include width-height(70px, 40px);
+  @include backgroundImg(cover, no-repeat, center);
+}
+
+.label {
+  @include width-height(100%, 100%)
+}

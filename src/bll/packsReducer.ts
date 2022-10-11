@@ -30,9 +30,9 @@ const initialState: PacksType = {
     cardPacks: [{
         _id: "63306a3a6caad3673917ba62",
         user_id: "632502cb94b7970fb4f08698",
-        user_name: "Loading...",
+        user_name: "",
         private: false,
-        name: "Loading...",
+        name: "",
         path: "/def",
         grade: 0,
         shots: 0,
@@ -152,10 +152,11 @@ export const deletePacksTC = (packId: string): AppThunk => {
     }
 }
 
-export const addNewPackTC = (titlePack: string, privatePack: boolean): AppThunk => async (dispatch) => {
+export const addNewPackTC = (titlePack: string, privatePack: boolean, image?: string): AppThunk => async (dispatch) => {
     const pack: PostPackDataType = {
         name: titlePack,
-        private: privatePack
+        private: privatePack,
+        deckCover: image
     }
     dispatch(setAppStatusAC("loading"))
     try {

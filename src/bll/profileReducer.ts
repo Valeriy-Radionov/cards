@@ -2,6 +2,7 @@ import {authAPI, UpdateUserType, UserDataType} from "../api/auth/auth-api";
 import {Dispatch} from "redux";
 import {handleServerNetworkError} from "../common/utils/errors-utils";
 import {setAppStatusAC} from "./appReducer";
+import {AppThunk} from "./store";
 
 
 const PROFILE = "PROFILE/PROFILE"
@@ -34,12 +35,12 @@ export const profileReducer = (state: ProfileStateType = initialProfileState, ac
     }
 }
 
-//TYPE ACs
+//types
 export type ProfileActionsType = SetProfileACType
 
 type SetProfileACType = ReturnType<typeof setProfileAC>
 
-// AC
+// actions
 export const setProfileAC = (profile: UserDataType | null) => {
     return {
         type: PROFILE,
@@ -48,8 +49,8 @@ export const setProfileAC = (profile: UserDataType | null) => {
         }
     } as const
 }
-
-export const updateUserTC = (model: UpdateUserType) => async (dispatch: Dispatch) => {
+// thunks
+export const updateUserTC = (model: UpdateUserType): AppThunk => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC("loading"))
     try {
         const response = await authAPI.userUpdate(model)
@@ -57,5 +58,7 @@ export const updateUserTC = (model: UpdateUserType) => async (dispatch: Dispatch
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
         handleServerNetworkError(e, dispatch)
+    } finally {
+        dispatch(setAppStatusAC("succeeded"))
     }
 };

@@ -15,8 +15,10 @@ const ProfileRename: React.FC<EditableSpanPropsType> = ({name, changeTask, disab
     const [title, setTitle] = useState('')
 
     const activateEditMode = () => {
-        setEditMode(true)
-        setTitle(name)
+        if (disabled === false) {
+            setEditMode(true)
+            setTitle(name)
+        }
     }
     const activateViewMode = () => {
         setEditMode(false)

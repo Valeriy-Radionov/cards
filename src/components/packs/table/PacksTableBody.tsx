@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TableBody, TableCell, TableRow} from '@mui/material'
 import {formatDate} from "../../../common/utils/formatDate";
 import {CardPackType} from "../../../api/packs/packs-api";
 import {ActionsPacks} from "./ActionsPacks";
 import {useNavigate} from 'react-router-dom'
+import style from "./PackTableBody.module.scss"
+import defImg from "../../../assets/image/email.png"
+import {backgroundImg} from "../../../common/utils/utilitsBg";
 
 type MapTableBodyPropsType = {
     items: CardPackType[]
@@ -17,6 +20,11 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                                                                     learnPack
                                                                 }) => {
     const navigate = useNavigate()
+    const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
+
+    const errorImgHandler = () => {
+        setIsAvaBroken(true)
+    }
     return (
         <TableBody>
             {items.map(item => {
@@ -24,14 +32,19 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                     <TableRow key={item._id} sx={{
                         "&:hover": {bgcolor: "lightgray"}
                     }}>
+                        <TableCell align="left">
+                            <img className={style.packImage}
+                                //исправить УСЛОВИЕ
+                                 src={item.deckCover || !isAvaBroken ? item.deckCover : defImg}
+                                 onError={errorImgHandler}
+                            />
+                        </TableCell>
                         <TableCell align="left"
                                    onClick={() => navigate(`/cards/${item._id}`, {state: item._id})}
                                    sx={{
                                        "&:hover": {color: "cornflowerblue"}
                                    }}
-                        >
-                            {item.name}
-                        </TableCell>
+                        >{item.name}</TableCell>
                         <TableCell align="left">
                             {item.cardsCount}
                         </TableCell>

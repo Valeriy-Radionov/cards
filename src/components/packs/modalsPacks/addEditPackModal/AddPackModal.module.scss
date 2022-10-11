@@ -1,3 +1,5 @@
+@import "src/common/styles/mixins";
+
 .bodyBlock {
   display: flex;
   flex-direction: column;
@@ -15,6 +17,19 @@
     border: none;
     border-bottom: 1.58px solid rgba(0, 0, 0, 0.3);
     padding-bottom: 4.43px;
+  }
+
+  .blockUpdatePhoto {
+    @include width-height(100%, 36px);
+    padding-top: 5px;
+
+    .updatePhoto {
+      display: flex;
+      @include width-height(100%, 100%);
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.6em;
+    }
   }
 
   .selectionBlock {

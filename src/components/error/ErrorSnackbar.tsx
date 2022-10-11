@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, {AlertProps} from '@mui/material/Alert';
 import {useDispatch, useSelector} from "react-redux";
@@ -21,9 +21,8 @@ export const ErrorSnackbar = () => {
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (error === 'clickaway') {
-            return;
+            return
         }
-
         dispatch(setAppErrorAC( null))
     };
 

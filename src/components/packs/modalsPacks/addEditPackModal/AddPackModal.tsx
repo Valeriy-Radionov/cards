@@ -4,6 +4,10 @@ import styleModal from "./AddPackModal.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
+import {convertFileToBase64} from "../../../../common/utils/convertFileTobase64";
+import {updateUserTC} from "../../../../bll/profileReducer";
+import style from "../../../../common/components/button/SuperButton.module.scss";
+import {backgroundImg} from "../../../../common/utils/utilitsBg";
 
 type AddPackModalPropsType = {
     id?: string
@@ -15,9 +19,10 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
     const dispatch = useAppDispatch
     const [titlePack, setTitlePack] = useState<string>(namePack || "")
     const [privatePack, setPrivatePack] = useState<boolean>(false)
+    const [image, setImage] = useState<string>("")
 
     const addNewPacks = () => {
-        dispatch(addNewPackTC(titlePack, privatePack))
+        dispatch(addNewPackTC(titlePack, privatePack, image))
         setTitlePack("")
     }
 
@@ -36,6 +41,21 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
     const editImg = () => {
         return <img src={stroke} alt={''}/>
     }
+
+    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            const file = e.target.files[0]
+            if (file.size < 4000000) {
+                convertFileToBase64(file, (file64: string) => {
+                    // dispatch(updateUserTC({avatar: file64}))
+                    setImage(file64)
+                })
+            } else {
+                alert("Big file")
+            }
+        }
+    }
+
     return (
         <div>
 
@@ -48,6 +68,13 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
                 <div className={styleModal.bodyBlock}>
                     <span className={styleModal.titleBlock}>Name pack</span>
                     <input value={titlePack} className={styleModal.InputBlock} onChange={changeTitlePackHandler}/>
+                    {image && <img src={image} alt={"X_X"}/>}
+                    <div className={styleModal.blockUpdatePhoto}>
+                        <label htmlFor={"choseImg"} className={`${style.buttonDef} ${styleModal.updatePhoto}`}>Add
+                            image</label>
+                        <input id={"choseImg"} type={"file"} style={{display: "none"}} accept={"image/*"}
+                               onChange={uploadHandler}></input>
+                    </div>
                     <div className={styleModal.selectionBlock}>
                         <input type={"checkbox"} className={styleModal.checkbox} onChange={privatePackHandler}/>
                         <label className={styleModal.description}>Private pack</label>

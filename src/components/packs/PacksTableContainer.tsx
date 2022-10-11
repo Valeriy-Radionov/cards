@@ -26,6 +26,7 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
                 <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
+                            <TableCell align="left">Cover</TableCell>
                             <TableCell align="left">Name</TableCell>
                             <TableCell align="left">Cards</TableCell>
                             <TableCell align="left">Last Updated</TableCell>
