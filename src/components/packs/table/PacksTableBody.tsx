@@ -5,8 +5,7 @@ import {CardPackType} from "../../../api/packs/packs-api";
 import {ActionsPacks} from "./ActionsPacks";
 import {useNavigate} from 'react-router-dom'
 import style from "./PackTableBody.module.scss"
-import defImg from "../../../assets/image/email.png"
-import {backgroundImg} from "../../../common/utils/utilitsBg";
+import defImg from "../../../assets/image/defaultCover.svg"
 
 type MapTableBodyPropsType = {
     items: CardPackType[]
@@ -34,7 +33,6 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                     }}>
                         <TableCell align="left">
                             <img className={style.packImage}
-                                //исправить УСЛОВИЕ
                                  src={item.deckCover || !isAvaBroken ? item.deckCover : defImg}
                                  onError={errorImgHandler}
                             />

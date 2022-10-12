@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
     Table,
     TableCell,
@@ -10,7 +10,8 @@ import {
     TablePagination
 } from '@mui/material'
 import {CardsType} from "../../../bll/cardsReducer";
-import arrow from '../../../assets/image/arrow.svg'
+import arrow from '../../../assets/image/sortingArrow.svg'
+import style from "./TableBody.module.scss"
 
 type BasicTablePropsType = {
     addParamsGrade: () => void
@@ -21,7 +22,6 @@ type BasicTablePropsType = {
     stateItems: CardsType
     disabledPaginate: boolean
 }
-
 export const BasicTable: React.FC<BasicTablePropsType> = ({
                                                               addParamsGrade,
                                                               grade,
@@ -42,7 +42,14 @@ export const BasicTable: React.FC<BasicTablePropsType> = ({
                         <TableCell align="left">Last Updated</TableCell>
                         <TableCell align="left" onClick={addParamsGrade}>
                             Grade
-                            <img src={arrow} style={grade ? {transform: 'rotate(180deg)'} : {}} alt='arrow'/>
+                            <img src={arrow}
+                                 style={grade ? {
+                                     transform: "rotate(180deg)",
+                                     paddingLeft: "2px",
+                                 } : {
+                                     paddingLeft: "2px",
+                                 }}
+                                 alt='arrow'/>
                         </TableCell>
                     </TableRow>
                 </TableHead>

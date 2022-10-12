@@ -1,8 +1,10 @@
 @import "../../common/styles/mixins";
+
 .container {
   @include width-height(100%, 100%);
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 120px 0 0 0;
   position: relative;
 
@@ -14,9 +16,12 @@
 
     a {
       color: black;
+      display: flex;
+      align-items: center;
 
       img {
         margin: 0 10px 0 0;
+        @include width-height(30px, 40px);
       }
     }
   }
@@ -29,6 +34,10 @@
     flex-direction: column;
     align-items: center;
     border-radius: 2px;
+    box-shadow: -15px -15px 2px -5px rgba(123, 51, 90, .5),
+    -15px 15px 2px -5px rgba(60, 74, 123, .5),
+    15px -15px 2px -5px rgba(255, 0, 0, .5),
+    15px 15px 2px -5px rgba(60, 123, 68, .5);
 
     h1 {
       margin: 27px 0 0 0;
@@ -43,6 +52,7 @@
       .avatar {
         @include width-height(96px, 96px);
         @include backgroundImg(cover, no-repeat, center);
+        box-shadow: 0 9px 9px 0px #BDBDBD;
         background-color: white;
         border-radius: 50%;
       }
@@ -61,12 +71,14 @@
 
         .updatePhoto {
           @include width-height(100%, 100%);
-          @include backgroundImg(88%, no-repeat, center);
+          @include backgroundImg(contain, no-repeat, center);
           background-color: #366efe;
           border-radius: 50%;
+          box-shadow: 0 9px 9px 0px #BDBDBD;
+
           &:hover {
             cursor: pointer;
-            background-color: rgba(82,161,55,0.52);
+            background-color: rgba(82, 161, 55, 0.52);
           }
         }
       }
@@ -79,14 +91,17 @@
 
     .logoutBtn {
       @include width-height(127px, 36px);
-      @include font (normal, 500, 16px, 20px);
+      @include font(normal, 500, 16px, 20px);
       opacity: 0.8;
       text-align: center;
       letter-spacing: 0.01em;
       margin: 29px 0 0 0;
       border: none;
       background: #FCFCFC;
-      box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 1),
+      -23px 0 20px -23px rgba(0, 0, 0, .8),
+      23px 0 20px -23px rgba(0, 0, 0, .8),
+      0 0 40px rgba(0, 0, 0, .1) inset;
       border-radius: 30px;
       transition: 0.5s;
 

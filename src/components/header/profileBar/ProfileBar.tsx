@@ -8,6 +8,7 @@ type ProfileBarPropsType = {}
 export const ProfileBar: React.FC<ProfileBarPropsType> = () => {
     const nameUser = useAppSelector(state => state.profile.user?.name)
     const avatarUser = useAppSelector(state => state.profile?.user?.avatar)
+    const isAuth = useAppSelector(state => state.auth.isLoggedIn)
     const [expand, setExpand] = useState<boolean>(false)
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
 
@@ -33,14 +34,16 @@ export const ProfileBar: React.FC<ProfileBarPropsType> = () => {
     }, [])
 
     return (
-        <div className={style.wrapper}>
-            <div className={style.container}>
+        isAuth ?
+            <div className={style.wrapper}>
+                <div className={style.container}>
             <span ref={spanBarRef} id={"nameUser"} className={style.nickName}
                   onClick={userSettingsHandler}>{nameUser}</span>
-                <img className={style.avatar} src={userAvatar} alt={"X_X"} onError={errorAvatarHandler}/>
-                {expand ? <ProfileBarSettings onClickHandler={userSettingsHandler}/> : null}
-            </div>
-        </div>
+                    <img id={"nameUser"} className={style.avatar} src={userAvatar} alt={"X_X"}
+                         onError={errorAvatarHandler}/>
+                    {expand ? <ProfileBarSettings onClickHandler={userSettingsHandler}/> : null}
+                </div>
+            </div> : <span>You are not authorization</span>
     );
 };
 

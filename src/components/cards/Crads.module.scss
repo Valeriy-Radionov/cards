@@ -17,10 +17,13 @@
       color: #FFFFFF;
 
       a {
+        display: flex;
+        align-items: center;
         color: black;
 
         img {
           margin: 0 10px 0 0;
+          @include width-height(30px, 40px);
         }
       }
     }

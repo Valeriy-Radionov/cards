@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import arrow from "../../../assets/image/Vector 1.svg";
+import arrow from "../../../assets/image/backArrow.svg";
 
 type LinkArrowPropsType = {
     className: string
@@ -9,7 +9,7 @@ type LinkArrowPropsType = {
     callback?: () => void
 }
 
-export const LinkArrow: React.FC<LinkArrowPropsType> = ({className, to, name,callback}) => {
+export const LinkArrow: React.FC<LinkArrowPropsType> = ({className, to, name, callback}) => {
     return (
         <div className={className}>
             <NavLink to={to} onClick={callback}>

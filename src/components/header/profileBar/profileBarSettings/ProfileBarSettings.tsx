@@ -5,7 +5,7 @@ import imgProfile from "../../../../assets/image/headerImg/userprofileIcon.png"
 import imgLogOut from "../../../../assets/image/headerImg/logoutprofileLogOut.png"
 import {NavLink} from "react-router-dom";
 import {logoutTC} from "../../../../bll/authReducer";
-import {useAppDispatch} from "../../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 
 type ProfileBarSettingsType = {
     onClickHandler: () => void

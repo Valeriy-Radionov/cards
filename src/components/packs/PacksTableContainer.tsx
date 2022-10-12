@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import {Paper, Table, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@mui/material'
 import {PacksType} from "../../bll/packsReducer";
-import arrow from "../../assets/image/arrow.svg";
+import arrow from "../../assets/image/sortingArrow.svg";
 
 type BasicTablePropsType = {
     handleChangePage: (event: unknown, newPage: number) => void
@@ -32,7 +32,11 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
                             <TableCell align="left">Last Updated</TableCell>
                             <TableCell align="left" onClick={addParamsUpdate}>
                                 Created by
-                                <img src={arrow} style={sorting ? {transform: 'rotate(180deg)'} : {}} alt='arrow'/>
+                                <img src={arrow}
+                                     style={sorting ? {
+                                         transform: 'rotate(180deg)',
+                                     } : {}}
+                                     alt='arrow'/>
                             </TableCell>
                             <TableCell align="left">Actions</TableCell>
                         </TableRow>
