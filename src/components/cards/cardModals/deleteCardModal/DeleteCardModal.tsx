@@ -3,7 +3,7 @@ import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindo
 import {useAppDispatch} from "../../../../bll/store";
 import del from "../../../../assets/image/Delete.svg";
 import {deleteCardsTC} from "../../../../bll/cardsReducer";
-import s from './DeleteCartModal.module.scss'
+import s from './DeleteCardModal.module.scss'
 
 type DeleteCardModalPropsType = {
     cardId: string

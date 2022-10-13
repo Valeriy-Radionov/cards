@@ -3,14 +3,14 @@ import {useAppDispatch} from "../../../../bll/store";
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import {addNewCardTC, updateCardTC} from "../../../../bll/cardsReducer";
 import {FormControl, MenuItem, Select, SelectChangeEvent, FormHelperText, TextField} from "@mui/material";
-import s from './AddCartModal.module.scss'
+import s from './AddCardModal.module.scss'
 import stroke from "../../../../assets/image/Edit.svg";
 
 type AddCardModalPropsType = {
     addEditModal: 'add' | 'edit'
     _id?: string
 }
-export const AddCartModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id}) => {
+export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id}) => {
     const dispatch = useAppDispatch
 
     const [select, setSelectInput] = useState('')
@@ -83,4 +83,4 @@ export const AddCartModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
     );
 };
 
-export default AddCartModal;
+export default AddCardModal;

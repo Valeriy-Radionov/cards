@@ -20,7 +20,6 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                                                                 }) => {
     const navigate = useNavigate()
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
-
     const errorImgHandler = () => {
         setIsAvaBroken(true)
     }
@@ -32,8 +31,9 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                         "&:hover": {bgcolor: "lightgray"}
                     }}>
                         <TableCell align="left">
+
                             <img className={style.packImage}
-                                 src={item.deckCover || !isAvaBroken ? item.deckCover : defImg}
+                                 src={!item.deckCover || isAvaBroken || (item.deckCover === "url or base64") ? defImg : item.deckCover}
                                  onError={errorImgHandler}
                             />
                         </TableCell>

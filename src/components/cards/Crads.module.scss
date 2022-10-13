@@ -30,9 +30,12 @@
 
     .packName {
       margin-bottom: 28px;
-      display: flex;
-      justify-content: start;
-      align-items: center;
+
+
+      img {
+        display: block;
+        border-radius: 5px;
+      }
 
       span {
         @include font(normal, 600, 22px, 27px);
@@ -41,6 +44,7 @@
       button {
         outline: none;
         border: none;
+        display: inline-block;
         background: none;
         transition: 0.5s;
 

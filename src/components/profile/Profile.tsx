@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
 import s from './Profile.module.scss'
 import ProfileRename from "./profileRename/ProfileRename";
 import {updateUserTC} from "../../bll/profileReducer";
@@ -34,7 +34,6 @@ export const Profile = () => {
             }
         }
     }
-
     const errorHandler = () => {
         setIsAvaBroken(true)
     }

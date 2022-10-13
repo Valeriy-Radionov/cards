@@ -10,9 +10,9 @@ import {EmptyPage} from "../../common/components/emptyPage/EmptyPage";
 import {LinkArrow} from "../../common/components/link/LinkArrow";
 import {DoubleSearchInput} from "../../common/components/doubleSearchInput/DoubleSearchInput";
 import actions from '../../assets/image/actions.svg'
-import AddCartModal from "./cardModals/addCardModal/AddCartModal";
+import AddCardModal from "./cardModals/addCardModal/AddCardModal";
 import {checkParamsForQuery, getQueryParams} from '../../common/utils/queryParams'
-
+import packDefCover from "../../assets/image/defaultCover.svg"
 
 export type ParamsType = {
     cardAnswer?: string  // не обязательно
@@ -41,6 +41,7 @@ function Cards() {
     const [gradeSearch, setGradeSearch] = useState(false)
     const [paramsSearch, setParamsSearch] = useState<ParamsType>({})
     //
+    const coverPack = !cards.packDeckCover || cards.packDeckCover === "url or base64" || cards.packDeckCover === null ? packDefCover : cards.packDeckCover
 
     //functions working to query params
     const updateParamsBackPackLink = (id?: string) => {
@@ -122,36 +123,38 @@ function Cards() {
                            callback={updateParamsBackPackLink}/>
                 <div className={s.packName}>
                     <span>{cards.packName}</span>
+                    {/*<img src={paramsPack}/>*/}
                     {isMyCards
                         ? <button disabled={updateStatusApp} style={updateStatusApp ? {opacity: '0.5'} : {}}><img
                             src={actions} alt='actions'/></button>
                         : null
                     }
+                    <img src={coverPack} style={{width: "120px", height: "70px"}}/>
                 </div>
                 <div className={s.searchBlock}>
                     <div className={s.searchItem}>
                         <DoubleSearchInput name={'Search question'}
-                                     inputId={'search-question'}
-                                     label={'Provide your question'}
-                                     sx={{width: '100%', background: '#FFFFFF'}}
-                                     value={searchParams.get('cardQuestion') || ''}
-                                     onChange={addParamsQuestion}
+                                           inputId={'search-question'}
+                                           label={'Provide your question'}
+                                           sx={{width: '100%', background: '#FFFFFF'}}
+                                           value={searchParams.get('cardQuestion') || ''}
+                                           onChange={addParamsQuestion}
                         />
                     </div>
                     <div className={s.searchItem2}>
                         <DoubleSearchInput name={'Search answer'}
-                                     inputId={'search-answer'}
-                                     label={'Provide your answer'}
-                                     sx={{width: '100%', background: '#FFFFFF'}}
-                                     value={searchParams.get('cardAnswer') || ''}
-                                     onChange={addParamsAnswer}
+                                           inputId={'search-answer'}
+                                           label={'Provide your answer'}
+                                           sx={{width: '100%', background: '#FFFFFF'}}
+                                           value={searchParams.get('cardAnswer') || ''}
+                                           onChange={addParamsAnswer}
                         />
                     </div>
                 </div>
                 {cards.cards.length
                     ? <div className={s.blockTable}>
                         {isMyCards
-                            ? <AddCartModal addEditModal={'add'}/>
+                            ? <AddCardModal addEditModal={'add'}/>
                             : null
                         }
                         <BasicTable

@@ -5,10 +5,12 @@ import {ProfileBarSettings} from "./profileBarSettings/ProfileBarSettings";
 import defaultAva from "../../../assets/image/headerImg/userProfile.webp";
 
 type ProfileBarPropsType = {}
+
 export const ProfileBar: React.FC<ProfileBarPropsType> = () => {
     const nameUser = useAppSelector(state => state.profile.user?.name)
     const avatarUser = useAppSelector(state => state.profile?.user?.avatar)
     const isAuth = useAppSelector(state => state.auth.isLoggedIn)
+
     const [expand, setExpand] = useState<boolean>(false)
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
 
