@@ -23,7 +23,9 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
                     return (
                         <TableRow key={item._id} hover>
                             <TableCell align="left" component="th" scope="row">
-                                {item.question}
+                                {/*!!!!!!*/}
+                                {/*1!!!!!! Проверить условие*/}
+                                {!item.question ? item.questionImg : item.question}
                             </TableCell>
                             <TableCell align="left">
                                 {item.answer}

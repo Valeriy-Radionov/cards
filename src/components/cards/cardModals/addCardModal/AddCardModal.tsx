@@ -2,7 +2,16 @@ import React, {ChangeEvent, useState} from 'react';
 import {useAppDispatch} from "../../../../bll/store";
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import {addNewCardTC, updateCardTC} from "../../../../bll/cardsReducer";
-import {FormControl, MenuItem, Select, SelectChangeEvent, FormHelperText, TextField} from "@mui/material";
+import {
+    FormControl,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+    FormHelperText,
+    TextField,
+    IconButton,
+    Button
+} from "@mui/material";
 import s from './AddCardModal.module.scss'
 import stroke from "../../../../assets/image/Edit.svg";
 
@@ -13,14 +22,14 @@ type AddCardModalPropsType = {
 export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id}) => {
     const dispatch = useAppDispatch
 
-    const [select, setSelectInput] = useState('')
-    const [questionInput, setQuestionInput] = useState('')
-    const [answerInput, setAnswerInput] = useState('')
+    const [select, setSelectInput] = useState("text")
+    const [questionInput, setQuestionInput] = useState("")
+    const [answerInput, setAnswerInput] = useState("")
 
     const clearInputs = () => {
-        setSelectInput('')
-        setQuestionInput('')
-        setAnswerInput('')
+        setSelectInput("")
+        setQuestionInput("")
+        setAnswerInput("")
     }
 
     const addNewCard = () => {
@@ -35,6 +44,7 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
 
     const handleChangeSelect = (event: SelectChangeEvent) => {
         setSelectInput(event.target.value as string);
+        console.log(select)
     }
 
     const handleChangeQuestionInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,14 +56,14 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
     }
 
     const editImg = () => {
-        return <img src={stroke} alt={''}/>
+        return <img src={stroke} alt={""}/>
     }
 
     return (
-        <div style={{display: 'inline-block'}}>
-            <ModalWindow namePreviousBtn={addEditModal === 'add' ? "Add new cart" : editImg()}
-                         titleModal={addEditModal === 'add' ? "Add new cart" : 'Edit cart'}
-                         actionSaveDeleteBtn={addEditModal === 'add' ? addNewCard : editCard}
+        <div style={{display: "inline-block"}}>
+            <ModalWindow namePreviousBtn={addEditModal === "add" ? "Add new cart" : editImg()}
+                         titleModal={addEditModal === "add" ? "Add new cart" : "Edit cart"}
+                         actionSaveDeleteBtn={addEditModal === "add" ? addNewCard : editCard}
                          isSaveDeleteModal={"Save"}
                          isEdit={addEditModal}
             >
@@ -64,18 +74,32 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
                             value={select}
                             onChange={handleChangeSelect}
                         >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={"text"}>Text</MenuItem>
+                            <MenuItem value={"image"}>Image</MenuItem>
                         </Select>
-                        <FormHelperText>Question</FormHelperText>
-                        <TextField value={questionInput}
-                                   onChange={handleChangeQuestionInput}
-                                   variant="standard"/>
-                        <FormHelperText>Answer</FormHelperText>
-                        <TextField value={answerInput}
-                                   onChange={handleChangeAnswerInput}
-                                   variant="standard"/>
+                        {select === "text" ?
+                            <>
+                                < FormHelperText> Question </FormHelperText>
+                                <TextField value={questionInput}
+                                           onChange={handleChangeQuestionInput}
+                                           variant="standard"/>
+                                <FormHelperText>Answer</FormHelperText>
+                                <TextField value={answerInput}
+                                           onChange={handleChangeAnswerInput}
+                                           variant="standard"/>
+                            </> : <>
+                                <FormHelperText> Question </FormHelperText>
+                                <Button variant="contained" component="label">
+                                    Upload
+                                    <input hidden accept="image/*" multiple type="file"/>
+                                </Button>
+                                <FormHelperText>Answer</FormHelperText>
+                                <Button variant="contained" component="label">
+                                    Upload
+                                    <input hidden accept="image/*" multiple type="file"/>
+                                </Button>
+                            </>
+                        }
                     </FormControl>
                 </div>
             </ModalWindow>
