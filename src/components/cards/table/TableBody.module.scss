@@ -1,9 +1,19 @@
-.rating {
-  width: 100%;
+@import "src/common/styles/mixins";
+
+.container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+
+  .rating {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .imgRow {
+    @include width-height(170px, 50px);
+    @include backgroundImg(cover, no-repeat, center);
+  }
 }
-
-
-

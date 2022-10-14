@@ -20,6 +20,7 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                                                                 }) => {
     const navigate = useNavigate()
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
+
     const errorImgHandler = () => {
         setIsAvaBroken(true)
     }

@@ -1,5 +1,14 @@
+@import "src/common/styles/mixins";
+
 .blockForm {
   width: 100%;
   text-align: center;
-  margin: 10px 0 0 0 ;
+  margin: 10px 0 0 0;
+}
+
+.imageModal {
+  @include width-height(150px, 90px);
+  @include backgroundImg(cover, no-repeat, center);
+  margin: 0 auto;
+
 }

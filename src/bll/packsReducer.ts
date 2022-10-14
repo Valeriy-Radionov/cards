@@ -169,11 +169,12 @@ export const addNewPackTC = (titlePack: string, privatePack: boolean, image?: st
     }
 };
 
-export const updatePackTC = (packId: string, titlePack: string, privatePack: boolean): AppThunk => async (dispatch) => {
+export const updatePackTC = (packId: string, titlePack: string, privatePack: boolean, cover?: string): AppThunk => async (dispatch) => {
     const pack: updatePackDataType = {
         name: titlePack,
         private: privatePack,
-        _id: packId
+        _id: packId,
+        deckCover: cover
     }
     dispatch(setAppStatusAC("loading"))
     try {

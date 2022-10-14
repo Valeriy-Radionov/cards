@@ -41,7 +41,7 @@ const initialState: CardsType = {
     packUserId: "63272e99d38dbc8a0103935d",
     packName: "no Name",
     packPrivate: false,
-    packDeckCover: "url or base64",
+    packDeckCover: "",
     packCreated: "2022-09-24T23:57:41.264Z",
     packUpdated: "2022-09-25T00:19:51.341Z",
     page: '1',
@@ -212,7 +212,7 @@ export const deleteCardsTC = (cardId: string): AppThunk => async (dispatch) => {
         dispatch(setAppStatusAC("idle"))
     }
 }
-export const addNewCardTC = (question: string, answer: string): AppThunk => async (dispatch, getState) => {
+export const addNewCardTC = (question: string, answer: string, questionImg?: string, answerImg?: string): AppThunk => async (dispatch, getState) => {
     const {cardsPack_id} = getState().cards.params
     const card: PostCardType = {
         cardsPack_id,
@@ -220,8 +220,8 @@ export const addNewCardTC = (question: string, answer: string): AppThunk => asyn
         answer: answer,
         grade: '0',
         shots: '0',
-        answerImg: "url or base 64",
-        questionImg: "url or base 64",
+        answerImg: answerImg || "",
+        questionImg: questionImg || "",
         questionVideo: "url or base 64",
         answerVideo: "url or base 64"
 

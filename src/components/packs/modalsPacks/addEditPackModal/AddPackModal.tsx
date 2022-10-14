@@ -4,10 +4,11 @@ import styleModal from "./AddPackModal.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
-import {convertFileToBase64} from "../../../../common/utils/convertFileTobase64";
 import {updateUserTC} from "../../../../bll/profileReducer";
 import style from "../../../../common/components/button/SuperButton.module.scss";
 import {backgroundImg} from "../../../../common/utils/utilitsBg";
+import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
+import packDefCover from "../../../../assets/image/defaultCover.svg";
 
 type AddPackModalPropsType = {
     id?: string
@@ -15,11 +16,16 @@ type AddPackModalPropsType = {
 }
 
 export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack}) => {
+
     const namePack = useAppSelector(state => state.packs.cardPacks).filter(pack => id ? pack._id === id : pack)[0]?.name
+    const cards = useAppSelector(state => state.cards)
     const dispatch = useAppDispatch
+
     const [titlePack, setTitlePack] = useState<string>(namePack || "")
     const [privatePack, setPrivatePack] = useState<boolean>(false)
     const [image, setImage] = useState<string>("")
+
+    const coverPack = !cards.packDeckCover || cards.packDeckCover === "url or base64" || cards.packDeckCover === null ? packDefCover : cards.packDeckCover
 
     const addNewPacks = () => {
         dispatch(addNewPackTC(titlePack, privatePack, image))
@@ -36,24 +42,10 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
         setPrivatePack(privatePack)
     }
     const editPack = () => {
-        dispatch(updatePackTC(id!, titlePack, privatePack))
+        dispatch(updatePackTC(id!, titlePack, privatePack, image))
     }
     const editImg = () => {
         return <img src={stroke} alt={''}/>
-    }
-
-    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length) {
-            const file = e.target.files[0]
-            if (file.size < 4000000) {
-                convertFileToBase64(file, (file64: string) => {
-                    // dispatch(updateUserTC({avatar: file64}))
-                    setImage(file64)
-                })
-            } else {
-                alert("Big file")
-            }
-        }
     }
 
     return (
@@ -73,7 +65,7 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
                         <label htmlFor={"choseImg"} className={`${style.buttonDef} ${styleModal.updatePhoto}`}>Add
                             image</label>
                         <input id={"choseImg"} type={"file"} style={{display: "none"}} accept={"image/*"}
-                               onChange={uploadHandler}></input>
+                               onChange={e => uploadHandler(e, dispatch, setImage)}></input>
                     </div>
                     <div className={styleModal.selectionBlock}>
                         <input type={"checkbox"} className={styleModal.checkbox} onChange={privatePackHandler}/>

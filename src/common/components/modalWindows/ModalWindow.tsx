@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import styleModal from "./ModalWindow.module.scss";
 import closeBtn from "../../../assets/image/Page 1close.svg";
 import {BlockButtonModal} from "./ButtonModal/BlockButtonModal";
-import {useAppDispatch} from "../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../bll/store";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -34,8 +34,9 @@ export const ModalWindow: React.FC<ModalWindowType> = ({
                                                            actionSaveDeleteBtn,
                                                            namePreviousBtn,
                                                            isSaveDeleteModal,
-                                                           isEdit
+                                                           isEdit,
                                                        }) => {
+
     const fullStyle = isEdit === 'edit' || isSaveDeleteModal === "Delete"
     const [open, setOpen] = React.useState<boolean>(false);
     const clickToggleModal = () => {

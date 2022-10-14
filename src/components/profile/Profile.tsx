@@ -10,7 +10,7 @@ import defaultAva from '../../assets/image/headerImg/userProfile.webp'
 import {backgroundImg} from "../../common/utils/utilitsBg";
 import {logoutTC} from "../../bll/authReducer";
 import {LinkArrow} from "../../common/components/link/LinkArrow";
-import {convertFileToBase64} from "../../common/utils/convertFileTobase64";
+import {convertFileToBase64} from "../../common/utils/workWithImages/uploadImageFileHandler";
 
 export const Profile = () => {
     const dispatch = useAppDispatch

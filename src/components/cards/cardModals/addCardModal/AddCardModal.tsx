@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {useAppDispatch} from "../../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import {addNewCardTC, updateCardTC} from "../../../../bll/cardsReducer";
 import {
@@ -14,6 +14,9 @@ import {
 } from "@mui/material";
 import s from './AddCardModal.module.scss'
 import stroke from "../../../../assets/image/Edit.svg";
+import {convertFileToBase64, uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
+import defImg from "../../../../assets/image/defaultCover.svg"
+import {setAppErrorAC} from "../../../../bll/appReducer";
 
 type AddCardModalPropsType = {
     addEditModal: 'add' | 'edit'
@@ -25,15 +28,28 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
     const [select, setSelectInput] = useState("text")
     const [questionInput, setQuestionInput] = useState("")
     const [answerInput, setAnswerInput] = useState("")
+    const [questionImg, setQuestionImg] = useState(defImg)
+    const [answerImg, setAnswerImg] = useState(defImg)
+
+    const [isAvaBroken, setIsAvaBroken] = useState(false)
+
+    const avatarQuestion = isAvaBroken ? defImg : questionImg
+    const avatarAnswer = isAvaBroken ? defImg : answerImg
 
     const clearInputs = () => {
-        setSelectInput("")
         setQuestionInput("")
         setAnswerInput("")
+        setQuestionImg(defImg)
+        setAnswerImg(defImg)
+    }
+
+    const errorHandler = () => {
+        setIsAvaBroken(true)
+        dispatch(setAppErrorAC("Incorrect image format"))
     }
 
     const addNewCard = () => {
-        dispatch(addNewCardTC(questionInput, answerInput))
+        questionInput || answerInput ? dispatch(addNewCardTC(questionInput, answerInput)) : dispatch(addNewCardTC("", "", questionImg, answerImg))
         clearInputs()
     }
 
@@ -89,14 +105,20 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
                                            variant="standard"/>
                             </> : <>
                                 <FormHelperText> Question </FormHelperText>
+                                <img className={s.imageModal} src={avatarQuestion} onError={errorHandler}
+                                     alt={"No image"}/>
                                 <Button variant="contained" component="label">
                                     Upload
-                                    <input hidden accept="image/*" multiple type="file"/>
+                                    <input hidden accept="image/*" type="file"
+                                           onChange={e => uploadHandler(e, dispatch, setQuestionImg)}/>
                                 </Button>
                                 <FormHelperText>Answer</FormHelperText>
+                                <img className={s.imageModal} src={avatarAnswer} onError={errorHandler}
+                                     alt={"No image"}/>
                                 <Button variant="contained" component="label">
                                     Upload
-                                    <input hidden accept="image/*" multiple type="file"/>
+                                    <input hidden accept="image/*" type="file"
+                                           onChange={e => uploadHandler(e, dispatch, setAnswerImg)}/>
                                 </Button>
                             </>
                         }
