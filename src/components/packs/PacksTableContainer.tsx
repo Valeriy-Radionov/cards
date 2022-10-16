@@ -2,6 +2,7 @@ import React from 'react';
 import {Paper, Table, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@mui/material'
 import {PacksType} from "../../bll/packsReducer";
 import arrow from "../../assets/image/sortingArrow.svg";
+import style from "./PackTableContainer.module.scss"
 
 type BasicTablePropsType = {
     handleChangePage: (event: unknown, newPage: number) => void
@@ -26,11 +27,13 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
                 <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left">Cover</TableCell>
-                            <TableCell align="left">Name</TableCell>
-                            <TableCell align="left">Cards</TableCell>
-                            <TableCell align="left">Last Updated</TableCell>
-                            <TableCell align="left" onClick={addParamsUpdate}>
+                            <TableCell align="left" className={style.row}>Cover</TableCell>
+                            <TableCell align="left" className={style.row}>Name</TableCell>
+                            <TableCell align="left" className={style.row}>Cards</TableCell>
+                            <TableCell align="left" className={style.row}>Last Updated</TableCell>
+                            <TableCell align="left" className={style.row} onClick={addParamsUpdate} sx={{
+                                "&:hover": {cursor: "pointer"}
+                            }}>
                                 Created by
                                 <img src={arrow}
                                      style={sorting ? {
@@ -38,7 +41,7 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
                                      } : {}}
                                      alt='arrow'/>
                             </TableCell>
-                            <TableCell align="left">Actions</TableCell>
+                            <TableCell align="left" className={style.row}>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     {children}

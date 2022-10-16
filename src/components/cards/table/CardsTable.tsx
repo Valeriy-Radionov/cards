@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import {CardsType} from "../../../bll/cardsReducer";
 import arrow from '../../../assets/image/sortingArrow.svg'
+import style from "./CardsTable.module.scss";
 
 type BasicTablePropsType = {
     addParamsGrade: () => void
@@ -37,9 +38,9 @@ export const BasicTable: React.FC<BasicTablePropsType> = ({
                 <TableHead>
                     <TableRow>
                         <TableCell align="center">Question</TableCell>
-                        <TableCell align="center">Answer</TableCell>
-                        <TableCell align="left">Last Updated</TableCell>
-                        <TableCell align="left" onClick={addParamsGrade}>
+                        <TableCell align="center" className={style.row}>Answer</TableCell>
+                        <TableCell align="left" className={style.row}>Last Updated</TableCell>
+                        <TableCell align="left" onClick={addParamsGrade} className={style.row}>
                             Grade
                             <img src={arrow}
                                  style={grade ? {

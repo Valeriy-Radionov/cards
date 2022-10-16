@@ -5,7 +5,7 @@ import {getCardsTC, updatePageCountPaginateAC, updatePagePaginateAC, updateParam
 import {useLocation, useSearchParams} from 'react-router-dom'
 import {BasicTable} from "./table/CardsTable";
 import {useDebounce} from "../../hooks/debounceHook";
-import {TableBodyCart} from "./table/TableBody";
+import {TableBodyCart} from "./table/tableBody/TableBody";
 import {EmptyPage} from "../../common/components/emptyPage/EmptyPage";
 import {LinkArrow} from "../../common/components/link/LinkArrow";
 import {DoubleSearchInput} from "../../common/components/doubleSearchInput/DoubleSearchInput";

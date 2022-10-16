@@ -1,9 +1,11 @@
 @import "../../styles/mixins";
+@import "src/common/styles/variables";
 
 .container {
-  .btnSmall{
+  .btnSmall {
 
   }
+
   .btnDelete {
     outline: none;
     border: none;
@@ -19,19 +21,24 @@
   .btnPack {
     position: absolute;
     @include width-height(184px, 36px);
+    @include font(normal, 500, 16px, 20px);
     right: 136px;
-    top: 96px;
+    top: 84px;
     border: none;
     outline: none;
-    @include font(normal, 500, 16px, 20px);
     letter-spacing: 0.01em;
-    //font-family: 'Montserrat';
-
-    color: #FFFFFF;
+    color: $textWhiteColor;
     box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-    background: #366EFF;
+    background: $primaryColor;
     border-radius: 30px;
     transition: 0.4s;
+    @media (max-width: 900px) {
+      right: 20px;
+    }
+    @media (max-width: 677px) {
+      position: static;
+      margin-bottom: 5px;
+    }
 
     &:hover {
       cursor: pointer;
@@ -40,6 +47,7 @@
     }
   }
 }
+
 .header {
   display: flex;
   justify-content: space-between;

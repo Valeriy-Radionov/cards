@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppSelector} from "../../../bll/store";
-import s from "../../cards/table/actionsCartTable/ActionsCardTable.module.scss";
+import s from "../../cards/table/actionsCardTable/ActionsCardTable.module.scss";
 import learn from "../../../assets/image/teacherlearn.svg"
 import {DeletePackModal} from "../modalsPacks/deletePackModal/DeletePackModal";
 import {AddPackModal} from "../modalsPacks/addEditPackModal/AddPackModal";

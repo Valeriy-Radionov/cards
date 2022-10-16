@@ -2,13 +2,13 @@
 
 .container {
   display: flex;
-  background-color: rgba(1, 112, 161, 0.52);
+  background-color: rgba(11, 135, 190, 0.95);
   flex-direction: column;
   min-height: 50px;
   position: fixed;
   top: 0;
   width: 100%;
-  box-shadow: 0 9px 9px 0px #BDBDBD;
+  box-shadow: 0 9px 9px 0px #004b7d;
   z-index: 9999;
 
   .blockLink {

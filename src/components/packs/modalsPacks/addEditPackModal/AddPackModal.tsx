@@ -4,7 +4,8 @@ import styleModal from "./AddPackModal.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
-import style from "../../../../common/components/button/SuperButton.module.scss";
+import style from "../../../../components/packs/modalsPacks/addEditPackModal/AddPackModal.module.scss";
+import styleBtn from "../../../../common/components/button/SuperButton.module.scss"
 import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
 import packDefCover from "../../../../assets/image/defaultCover.svg";
 
@@ -18,10 +19,11 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
     const namePack = useAppSelector(state => state.packs.cardPacks).filter(pack => id ? pack._id === id : pack)[0]?.name
     // const cards = useAppSelector(state => state.cards)
     const dispatch = useAppDispatch
-
+    const avatarPack = useAppSelector(state => state.cards.packDeckCover)
     const [titlePack, setTitlePack] = useState<string>(namePack || "")
     const [privatePack, setPrivatePack] = useState<boolean>(false)
     const [image, setImage] = useState<string>("")
+    const imagePack = avatarPack ? avatarPack : packDefCover
 
     const addNewPacks = () => {
         dispatch(addNewPackTC(titlePack, privatePack, image))
@@ -38,7 +40,7 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
         setPrivatePack(privatePack)
     }
     const editPack = () => {
-        dispatch(updatePackTC(id!, titlePack, privatePack, image))
+        dispatch(updatePackTC(id!, titlePack, privatePack, imagePack))
     }
     const editImg = () => {
         return <img src={stroke} alt={""}/>
@@ -56,9 +58,11 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
                 <div className={styleModal.bodyBlock}>
                     <span className={styleModal.titleBlock}>Name pack</span>
                     <input value={titlePack} className={styleModal.InputBlock} onChange={changeTitlePackHandler}/>
-                    {image && <img src={image} alt={"X_X"}/>}
-                    <div className={styleModal.blockUpdatePhoto}>
-                        <label htmlFor={"choseImg"} className={`${style.buttonDef} ${styleModal.updatePhoto}`}>Add
+                    {avatarPack ? <img src={avatarPack} alt={"X_X"} style={{width: "150px", height: "100px"}}/> :
+                        <img src={packDefCover} alt={"X_X"} style={{width: "150px", height: "100px"}}/>}
+                    <div className={style.updatePhotoBlock}>
+                        <label htmlFor={"choseImg"}
+                               className={`${style.updatePhoto} ${styleBtn.buttonDef}`}>Add
                             image</label>
                         <input id={"choseImg"} type={"file"} style={{display: "none"}} accept={"image/*"}
                                onChange={e => uploadHandler(e, dispatch, setImage)}></input>

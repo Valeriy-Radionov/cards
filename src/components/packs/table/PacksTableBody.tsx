@@ -29,7 +29,7 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
             {items.map(item => {
                 return (
                     <TableRow key={item._id} sx={{
-                        "&:hover": {bgcolor: "dodgerblue"}
+                        "&:hover": {bgcolor: "rgba(1, 112, 161, 0.52)"}
                     }}>
                         <TableCell align="left">
 
@@ -38,19 +38,19 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                                  onError={errorImgHandler}
                             />
                         </TableCell>
-                        <TableCell align="left"
+                        <TableCell className={style.row} align="left"
                                    onClick={() => navigate(`/cards/${item._id}`, {state: item._id})}
                                    sx={{
-                                       "&:hover": {color: "white", cursor: "pointer"}
+                                       "&:hover": {color: "rgb(0,161,39)", cursor: "pointer"}
                                    }}
                         >{item.name}</TableCell>
-                        <TableCell align="left">
+                        <TableCell align="left" className={style.row}>
                             {item.cardsCount}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="left" className={style.row}>
                             {formatDate(item.updated)}
                         </TableCell>
-                        <TableCell align="left">{item.user_name}</TableCell>
+                        <TableCell align="left" className={style.row}>{item.user_name}</TableCell>
                         <TableCell align="left">
                             <ActionsPacks
                                 learnItem={learnPack}

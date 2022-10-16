@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import "../../../../common/styles/mixins";
 
 .container {
   display: flex;
@@ -10,6 +10,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .row {
+    @include font(normal, 400, 14px, 27px);
+    color: black;
   }
 
   .imgRow {

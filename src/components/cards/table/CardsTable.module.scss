@@ -1,0 +1,8 @@
+@import "src/common/styles/mixins";
+@import "src/common/styles/variables";
+
+.row {
+  @include font(normal, 400, 16px, 27px);
+  color: black;
+  background-color: rgb(36, 188, 255);
+}

@@ -5,10 +5,10 @@ import {
     TableRow,
     Rating
 } from '@mui/material'
-import {formatDate} from "../../../common/utils/formatDate";
-import {ActionsCardTable} from "./actionsCartTable/ActionsCardTable";
+import {formatDate} from "../../../../common/utils/formatDate";
+import {ActionsCardTable} from "../actionsCardTable/ActionsCardTable";
 import styleTableRow from './TableBody.module.scss'
-import {FullCardType} from "../../../bll/cardsReducer";
+import {FullCardType} from "../../../../bll/cardsReducer";
 
 type MapTableBodyPropsType = {
     items: FullCardType[]
@@ -22,19 +22,17 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
                 {items.map(item => {
                     return (
                         <TableRow key={item._id} sx={{
-                            "&:hover": {bgcolor: "dodgerblue"}
+                            "&:hover": {bgcolor: "rgba(1, 112, 161, 0.52)"}
                         }}>
-                            <TableCell align="center" component="th" scope="row">
-                                {/*!!!!!!*/}
-                                {/*1!!!!!! Проверить условие*/}
+                            <TableCell align="center" component="th" scope="row" className={styleTableRow.row}>
                                 {!item.questionImg ? item.question :
                                     <img src={item.questionImg} className={styleTableRow.imgRow}/>}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" className={styleTableRow.row}>
                                 {!item.answerImg ? item.answer :
                                     <img src={item.answerImg} className={styleTableRow.imgRow}/>}
                             </TableCell>
-                            <TableCell align="left">
+                            <TableCell align="left" className={styleTableRow.row}>
                                 {formatDate(item.updated)}
                             </TableCell>
                             <TableCell align="center">

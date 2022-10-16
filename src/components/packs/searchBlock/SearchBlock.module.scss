@@ -1,0 +1,31 @@
+@import "src/common/styles/variables";
+@import "src/common/styles/mixins";
+
+.container {
+  max-width: 100%;
+  @include font(normal, 400, 16px, 27px);
+  box-sizing: border-box;
+  margin: 40px 0 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  @media (max-width: 933px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 933px) {
+      padding-bottom: 10px;
+    }
+  }
+
+  & span {
+    margin: 0 0 8px 0;
+  }
+}
