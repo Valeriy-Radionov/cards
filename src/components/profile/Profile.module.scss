@@ -1,20 +1,29 @@
 @import "../../common/styles/mixins";
+@import "../../common/styles/variables";
 
 .container {
-  @include width-height(100%, 100%);
+  @include width-height(100%, 100vh);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 120px 0 0 0;
   position: relative;
+  background-image: url("../../../src/assets/image/background.svg");
+  @include backgroundImg(cover, no-repeat, center);
 
   .link {
     position: absolute;
     left: 168px;
     top: 84px;
     color: #FFFFFF;
+    @media (max-width: 768px) {
+      left: 50px;
+    }
+    @media (max-width: 455px) {
+      left: 2px;
+    }
 
     a {
+      font-family: $titleFontFamily;
       color: black;
       display: flex;
       align-items: center;
@@ -38,8 +47,12 @@
     -15px 15px 2px -5px rgba(60, 74, 123, .5),
     15px -15px 2px -5px rgba(255, 0, 0, .5),
     15px 15px 2px -5px rgba(60, 123, 68, .5);
+    @media (max-width: 768px) {
+      @include width-height(340px, 350px);
+    }
 
     h1 {
+      font-family: $titleFontFamily;
       margin: 27px 0 0 0;
     }
 
@@ -57,7 +70,7 @@
         border-radius: 50%;
       }
 
-      .blockUpdatePhoto {
+      .updatePhotoBlock {
         @include width-height(32px, 32px);
         position: absolute;
         left: 65px;
@@ -72,7 +85,7 @@
         .updatePhoto {
           @include width-height(100%, 100%);
           @include backgroundImg(contain, no-repeat, center);
-          background-color: #366efe;
+          background-color: $primaryColor;
           border-radius: 50%;
           box-shadow: 0 9px 9px 0px #BDBDBD;
 

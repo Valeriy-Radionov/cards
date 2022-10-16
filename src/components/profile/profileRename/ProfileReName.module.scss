@@ -1,6 +1,8 @@
 @import "../../../common/styles/mixins";
+@import "../../../common/styles/variables";
 
 .block {
+  @include font(normal, 500, 16px, 20px);
   margin: 17px 0 0 0;
   width: 100%;
   display: flex;
@@ -40,9 +42,9 @@
         @include width-height(52px, 24px);
         @include font(normal, 400, 12px, 24px);
         margin: 0;
-        background: #366EFF;
+        background: $primaryColor;
         border-radius: 2px;
-        color: #FFFFFF;
+        color: $textWhiteColor;
         border: none;
       }
     }

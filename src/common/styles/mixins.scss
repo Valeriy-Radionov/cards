@@ -4,7 +4,8 @@
   }
 }
 
-@mixin font($style, $weight, $size, $height) {
+@mixin font($style, $weight, $size, $height,$fontFamily: "Montserrat") {
+  font-family: $fontFamily;
   font-style: $style;
   font-weight: $weight;
   font-size: $size;
@@ -15,6 +16,7 @@
   width: $width;
   height: $height;
 }
+
 @mixin backgroundImg($size, $repeat, $position) {
   background-size: $size;
   background-repeat: $repeat;

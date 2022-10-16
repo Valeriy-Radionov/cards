@@ -4,9 +4,7 @@ import styleModal from "./AddPackModal.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
-import {updateUserTC} from "../../../../bll/profileReducer";
 import style from "../../../../common/components/button/SuperButton.module.scss";
-import {backgroundImg} from "../../../../common/utils/utilitsBg";
 import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
 import packDefCover from "../../../../assets/image/defaultCover.svg";
 
@@ -18,14 +16,12 @@ type AddPackModalPropsType = {
 export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack}) => {
 
     const namePack = useAppSelector(state => state.packs.cardPacks).filter(pack => id ? pack._id === id : pack)[0]?.name
-    const cards = useAppSelector(state => state.cards)
+    // const cards = useAppSelector(state => state.cards)
     const dispatch = useAppDispatch
 
     const [titlePack, setTitlePack] = useState<string>(namePack || "")
     const [privatePack, setPrivatePack] = useState<boolean>(false)
     const [image, setImage] = useState<string>("")
-
-    const coverPack = !cards.packDeckCover || cards.packDeckCover === "url or base64" || cards.packDeckCover === null ? packDefCover : cards.packDeckCover
 
     const addNewPacks = () => {
         dispatch(addNewPackTC(titlePack, privatePack, image))
@@ -45,7 +41,7 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
         dispatch(updatePackTC(id!, titlePack, privatePack, image))
     }
     const editImg = () => {
-        return <img src={stroke} alt={''}/>
+        return <img src={stroke} alt={""}/>
     }
 
     return (

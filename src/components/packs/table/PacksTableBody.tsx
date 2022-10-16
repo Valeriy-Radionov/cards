@@ -29,7 +29,7 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
             {items.map(item => {
                 return (
                     <TableRow key={item._id} sx={{
-                        "&:hover": {bgcolor: "lightgray"}
+                        "&:hover": {bgcolor: "dodgerblue"}
                     }}>
                         <TableCell align="left">
 
@@ -41,7 +41,7 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                         <TableCell align="left"
                                    onClick={() => navigate(`/cards/${item._id}`, {state: item._id})}
                                    sx={{
-                                       "&:hover": {color: "cornflowerblue"}
+                                       "&:hover": {color: "white", cursor: "pointer"}
                                    }}
                         >{item.name}</TableCell>
                         <TableCell align="left">

@@ -42,12 +42,15 @@ export const ModalWindow: React.FC<ModalWindowType> = ({
     const clickToggleModal = () => {
         setOpen(!open)
     }
-
+    const status = useAppSelector(state => state.app.status)
+    const disabled = status === "loading"
+    const styleDisable = status === "loading" ? {opacity: "0.5"} : {}
 
     return (
         <div className={styleModal.container}>
             <button onClick={clickToggleModal}
-                    className={fullStyle ? styleModal.btnDelete : styleModal.btnPack}>{namePreviousBtn}</button>
+                    className={fullStyle ? styleModal.btnDelete : styleModal.btnPack}
+                    disabled={disabled} style={styleDisable}>{namePreviousBtn}</button>
             <Modal
                 open={open}
                 onClose={clickToggleModal}

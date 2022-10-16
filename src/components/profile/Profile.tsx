@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, SyntheticEvent, useEffect, useRef, useState} from 'react';
 import s from './Profile.module.scss'
 import ProfileRename from "./profileRename/ProfileRename";
 import {updateUserTC} from "../../bll/profileReducer";
@@ -10,7 +10,7 @@ import defaultAva from '../../assets/image/headerImg/userProfile.webp'
 import {backgroundImg} from "../../common/utils/utilitsBg";
 import {logoutTC} from "../../bll/authReducer";
 import {LinkArrow} from "../../common/components/link/LinkArrow";
-import {convertFileToBase64} from "../../common/utils/workWithImages/uploadImageFileHandler";
+import {convertFileToBase64, uploadHandler} from "../../common/utils/workWithImages/uploadImageFileHandler";
 
 export const Profile = () => {
     const dispatch = useAppDispatch
@@ -19,23 +19,12 @@ export const Profile = () => {
     const appStatus = useAppSelector(state => state.app.status)
     const disable = appStatus === "loading"
 
-    const [isAvaBroken, setIsAvaBroken] = useState(false)
-    const avatar = isAvaBroken ? defaultAva : user?.avatar!
+    const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
+    let avatar = isAvaBroken && defaultAva || user?.avatar!
 
-    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length) {
-            const file = e.target.files[0]
-            if (file.size < 4000000) {
-                convertFileToBase64(file, (file64: string) => {
-                    dispatch(updateUserTC({avatar: file64}))
-                })
-            } else {
-                alert("Incorrect image format")
-            }
-        }
-    }
-    const errorHandler = () => {
-        setIsAvaBroken(true)
+    const errorHandler = (e: SyntheticEvent<HTMLImageElement>) => {
+        e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)
+        e.currentTarget.src = defaultAva
     }
 
     const logout = () => {
@@ -55,12 +44,13 @@ export const Profile = () => {
             <div className={s.block}>
                 <h1>Personal information</h1>
                 <div className={s.imgBlock}>
-                    <img className={s.avatar} src={avatar} onError={errorHandler}/>
+                    <img className={s.avatar} src={avatar} alt={"X_X"} onError={errorHandler}/>
                     {/*update avatar block*/}
-                    <div className={s.blockUpdatePhoto}>
+                    <div className={s.updatePhotoBlock}>
                         <label htmlFor={"addPhoto"} style={backgroundImg(updateAva)} className={s.updatePhoto}></label>
                         <input id={"addPhoto"} type={"file"} style={{display: "none"}} accept={"image/*"}
-                               onChange={uploadHandler} disabled={disable}></input>
+                               onChange={e => uploadHandler(e, dispatch, undefined, true, isAvaBroken)}
+                               disabled={disable}></input>
                     </div>
                 </div>
                 <ProfileRename name={user ? user.name : ''} changeTask={updateUsers} disabled={disable}/>

@@ -21,7 +21,9 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
             <TableBody className={styleTableRow.container}>
                 {items.map(item => {
                     return (
-                        <TableRow key={item._id} hover>
+                        <TableRow key={item._id} sx={{
+                            "&:hover": {bgcolor: "dodgerblue"}
+                        }}>
                             <TableCell align="center" component="th" scope="row">
                                 {/*!!!!!!*/}
                                 {/*1!!!!!! Проверить условие*/}

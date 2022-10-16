@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
 import style from "./ProfileBar.module.scss"
 import {useAppSelector} from "../../../bll/store";
 import {ProfileBarSettings} from "./profileBarSettings/ProfileBarSettings";
@@ -15,8 +15,10 @@ export const ProfileBar: React.FC<ProfileBarPropsType> = () => {
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
 
     const userAvatar = isAvaBroken ? defaultAva : avatarUser
-    const errorAvatarHandler = () => {
-        setIsAvaBroken(true)
+
+    const errorAvatarHandler = (e: SyntheticEvent<HTMLImageElement>) => {
+        e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)
+        e.currentTarget.src = defaultAva
     }
 
     const userSettingsHandler = () => {

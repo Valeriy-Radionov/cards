@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-Regular.eot');
+    src: url('Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Montserrat-Regular.woff') format('woff'),
+        url('Montserrat-Regular.ttf') format('truetype'),
+        url('Montserrat-Regular.svg#Montserrat-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Foo';
+    src: url('Foo-Regular.eot');
+    src: url('Foo-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Foo-Regular.woff') format('woff'),
+        url('Foo-Regular.ttf') format('truetype'),
+        url('Foo-Regular.svg#Foo-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Airborne';
+    src: url('Airborne.eot');
+    src: url('Airborne.eot?#iefix') format('embedded-opentype'),
+        url('Airborne.woff') format('woff'),
+        url('Airborne.ttf') format('truetype'),
+        url('Airborne.svg#Airborne') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

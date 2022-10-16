@@ -1,12 +1,15 @@
 @import "../../../common/styles/mixins.scss";
+@import "../../../common/styles/variables";
 
 .container {
   display: flex;
   align-items: center;
 
   .nickName {
+    font-family: $titleFontFamily;
     margin-right: 10px;
-    border-bottom: 2px dashed black;
+    border-bottom: 2px dashed white;
+    color: white;
 
     &:hover {
       cursor: pointer;
@@ -16,6 +19,7 @@
 
   .avatar {
     @include backgroundImg(cover, no-repeat, center);
+    background-color: white;
     width: 36px;
     height: 36px;
     border-radius: 50%;

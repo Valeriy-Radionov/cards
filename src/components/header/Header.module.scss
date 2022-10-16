@@ -1,6 +1,8 @@
+@import "src/common/styles/variables";
+
 .container {
   display: flex;
-  background-color: #FCFCFC;
+  background-color: rgba(1, 112, 161, 0.52);
   flex-direction: column;
   min-height: 50px;
   position: fixed;
@@ -15,6 +17,9 @@
     justify-content: flex-end;
     padding-right: 136px;
     align-items: center;
+    @media (max-width: 768px) {
+      padding-right: 40px;
+    }
 
     .linkNavBar {
       color: black;
