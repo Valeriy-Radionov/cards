@@ -42,7 +42,8 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
                                             }}
                                     />
                                     <ActionsCardTable isDisabled={item.entityStatusCard === 'loading'} id={item._id}
-                                                      isMy={isMy}/>
+                                                      isMy={isMy} questionTxt={item.question} answerTxt={item.answer}
+                                                      questionImg={item.questionImg} answerImg={item.answerImg}/>
                                 </div>
                             </TableCell>
                         </TableRow>

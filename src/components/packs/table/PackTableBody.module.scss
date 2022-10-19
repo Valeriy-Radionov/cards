@@ -5,7 +5,7 @@
   @include backgroundImg(cover, no-repeat, center);
 }
 
-.row {
+.headerCell {
   @include font(normal, 400, 16px, 27px);
   color: black;
 }

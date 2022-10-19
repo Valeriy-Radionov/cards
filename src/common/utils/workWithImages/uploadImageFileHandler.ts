@@ -14,14 +14,13 @@ export const convertFileToBase64 = (file: File, callBack: (value: string) => voi
     reader.readAsDataURL(file)
 }
 
-export const uploadHandler = (e: ChangeEvent<HTMLInputElement>, dispatch: ThunkDispatch<AppRootStateType, unknown, AppRootActionsType>, setState?: React.Dispatch<React.SetStateAction<string>>, isProfile?: boolean, errorLoadImg?: boolean) => {
+export const uploadHandler = (e: ChangeEvent<HTMLInputElement>, dispatch: ThunkDispatch<AppRootStateType, unknown, AppRootActionsType>, setState: React.Dispatch<React.SetStateAction<string>> | null, isProfile?: boolean) => {
     if (e.target.files && e.target.files.length) {
         const file = e.target.files[0]
         if (file.size < 4000000) {
             convertFileToBase64(file, (file64: string) => {
                 setState && setState(file64)
                 isProfile && dispatch(updateUserTC({avatar: file64}))
-                !errorLoadImg && dispatch(updateUserTC({avatar: file64}))
             })
         } else {
             dispatch(setAppErrorAC("Image must be < 4Mb"))

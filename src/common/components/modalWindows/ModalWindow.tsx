@@ -26,6 +26,7 @@ type ModalWindowType = {
     namePreviousBtn: string | ReactNode
     isSaveDeleteModal: 'Save' | 'Delete'
     isEdit?: 'edit' | 'add'
+    setTitlePack?: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const ModalWindow: React.FC<ModalWindowType> = ({
@@ -35,11 +36,13 @@ export const ModalWindow: React.FC<ModalWindowType> = ({
                                                            namePreviousBtn,
                                                            isSaveDeleteModal,
                                                            isEdit,
+                                                           setTitlePack
                                                        }) => {
 
     const fullStyle = isEdit === 'edit' || isSaveDeleteModal === "Delete"
     const [open, setOpen] = React.useState<boolean>(false);
     const clickToggleModal = () => {
+        setTitlePack && setTitlePack("")
         setOpen(!open)
     }
     const status = useAppSelector(state => state.app.status)

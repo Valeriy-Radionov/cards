@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, SyntheticEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import {addNewCardTC, updateCardTC} from "../../../../bll/cardsReducer";
@@ -21,54 +21,105 @@ import {setAppErrorAC} from "../../../../bll/appReducer";
 type AddCardModalPropsType = {
     addEditModal: 'add' | 'edit'
     _id?: string
+    questionTxt?: string
+    answerTxt?: string
+    questionImg?: string
+    answerImg?: string
 }
-export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id}) => {
+export const AddCardModal: React.FC<AddCardModalPropsType> = ({
+                                                                  addEditModal,
+                                                                  _id,
+                                                                  questionTxt,
+                                                                  answerTxt,
+                                                                  questionImg,
+                                                                  answerImg
+                                                              }) => {
     const dispatch = useAppDispatch
 
-    const [select, setSelectInput] = useState("text")
-    const [questionInput, setQuestionInput] = useState("")
-    const [answerInput, setAnswerInput] = useState("")
-    const [questionImg, setQuestionImg] = useState(defImg)
-    const [answerImg, setAnswerImg] = useState(defImg)
+
+    const valueQuestion = questionTxt ? questionTxt : ""
+    const valueAnswer = answerTxt ? answerTxt : ""
+
+
+    //state for images and input value
+    const [questionInput, setQuestionInput] = useState(valueQuestion)
+    const [answerInput, setAnswerInput] = useState(valueAnswer)
+
+    const [questionImage, setQuestionImage] = useState("")
+    const [answerImage, setAnswerImage] = useState("")
 
     const [isAvaBroken, setIsAvaBroken] = useState(false)
 
-    const avatarQuestion = isAvaBroken ? defImg : questionImg
-    const avatarAnswer = isAvaBroken ? defImg : answerImg
+    //variables for cards modal window and table cards
+    const imageAddQuestion = questionImage ? questionImage : (questionImg ? questionImg : defImg)
+    const imageAddAnswer = answerImage ? answerImage : (answerImg ? answerImg : defImg)
+
+    const imgEditQuestion = questionImage ? questionImage : questionImg
+    const imgEditAnswer = answerImage ? answerImage : answerImg
+
+    //default select value
+    const selectFormat = (questionTxt !== "no question" && answerTxt !== "no answer") ? "text" : "image"
+    const [select, setSelectInput] = useState<string>(selectFormat)
 
     const clearInputs = () => {
         setQuestionInput("")
         setAnswerInput("")
-        setQuestionImg(defImg)
-        setAnswerImg(defImg)
+        setQuestionImage("")
+        setAnswerImage("")
     }
 
-    const errorHandler = () => {
-        setIsAvaBroken(true)
-        dispatch(setAppErrorAC("Incorrect image format"))
+    const errorHandler = (e: SyntheticEvent<HTMLImageElement>) => {
+        // e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)
+        e.currentTarget.src = defImg
+        setQuestionImage(defImg)
     }
 
     const addNewCard = () => {
-        questionInput || answerInput ? dispatch(addNewCardTC(questionInput, answerInput)) : dispatch(addNewCardTC("", "", questionImg, answerImg))
+        if ((addEditModal === "add") && (select === "image")) {
+            setAnswerImage(defImg)
+            setQuestionImage(defImg)
+        }
+        questionInput || answerInput ? dispatch(addNewCardTC(questionInput.trim(), answerInput.trim())) : dispatch(addNewCardTC("", "", imageAddQuestion, imageAddAnswer))
         clearInputs()
     }
 
     const editCard = () => {
-        _id && dispatch(updateCardTC({question: questionInput, answer: answerInput, _id}))
+        if (_id) {
+            if (select === "image") {
+
+                console.log()
+                dispatch(updateCardTC({
+                    question: questionInput,
+                    answer: answerInput,
+                    _id
+                }))
+            } else {
+                dispatch(updateCardTC({
+                    question: questionInput,
+                    answer: answerInput,
+                    _id
+                }))
+
+            }
+        }
+
         clearInputs()
     }
 
     const handleChangeSelect = (event: SelectChangeEvent) => {
-        setSelectInput(event.target.value as string);
+        let value = event.target.value as string
+        setSelectInput(value);
         console.log(select)
     }
 
     const handleChangeQuestionInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuestionInput(e.currentTarget.value)
+        let value = e.currentTarget.value
+        setQuestionInput(value)
     }
 
     const handleChangeAnswerInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setAnswerInput(e.currentTarget.value)
+        let value = e.currentTarget.value
+        setAnswerInput(value)
     }
 
     const editImg = () => {
@@ -95,7 +146,7 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
                         </Select>
                         {select === "text" ?
                             <>
-                                < FormHelperText> Question </FormHelperText>
+                                <FormHelperText> Question </FormHelperText>
                                 <TextField value={questionInput}
                                            onChange={handleChangeQuestionInput}
                                            variant="standard"/>
@@ -105,20 +156,24 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({addEditModal, _id
                                            variant="standard"/>
                             </> : <>
                                 <FormHelperText> Question </FormHelperText>
-                                <img className={s.imageModal} src={avatarQuestion} onError={errorHandler}
+                                <img className={s.imageModal}
+                                     src={addEditModal === "add" ? imageAddQuestion : imgEditQuestion}
+                                     onError={errorHandler}
                                      alt={"No image"}/>
                                 <Button variant="contained" component="label">
                                     Upload
                                     <input hidden accept="image/*" type="file"
-                                           onChange={e => uploadHandler(e, dispatch, setQuestionImg)}/>
+                                           onChange={e => uploadHandler(e, dispatch, setQuestionImage)}/>
                                 </Button>
                                 <FormHelperText>Answer</FormHelperText>
-                                <img className={s.imageModal} src={avatarAnswer} onError={errorHandler}
+                                <img className={s.imageModal}
+                                     src={addEditModal === "add" ? imageAddAnswer : imgEditAnswer}
+                                     onError={errorHandler}
                                      alt={"No image"}/>
                                 <Button variant="contained" component="label">
                                     Upload
                                     <input hidden accept="image/*" type="file"
-                                           onChange={e => uploadHandler(e, dispatch, setAnswerImg)}/>
+                                           onChange={e => uploadHandler(e, dispatch, setAnswerImage)}/>
                                 </Button>
                             </>
                         }

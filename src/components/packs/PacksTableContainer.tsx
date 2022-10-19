@@ -26,12 +26,12 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
             <TableContainer sx={{height: 432}}>
                 <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell align="left" className={style.row}>Cover</TableCell>
-                            <TableCell align="left" className={style.row}>Name</TableCell>
-                            <TableCell align="left" className={style.row}>Cards</TableCell>
-                            <TableCell align="left" className={style.row}>Last Updated</TableCell>
-                            <TableCell align="left" className={style.row} onClick={addParamsUpdate} sx={{
+                        <TableRow className={style.headerRow}>
+                            <TableCell align="left" className={style.header}>Cover</TableCell>
+                            <TableCell align="left" className={style.header}>Name</TableCell>
+                            <TableCell align="left" className={style.header}>Cards</TableCell>
+                            <TableCell align="left" className={style.header}>Last Updated</TableCell>
+                            <TableCell align="left" className={style.header} onClick={addParamsUpdate} sx={{
                                 "&:hover": {cursor: "pointer"}
                             }}>
                                 Created by
@@ -41,7 +41,7 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
                                      } : {}}
                                      alt='arrow'/>
                             </TableCell>
-                            <TableCell align="left" className={style.row}>Actions</TableCell>
+                            <TableCell align="left" className={style.header}>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     {children}

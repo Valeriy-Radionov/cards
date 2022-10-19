@@ -14,7 +14,9 @@ export const ProfileBar: React.FC<ProfileBarPropsType> = () => {
     const [expand, setExpand] = useState<boolean>(false)
     const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
 
-    const userAvatar = isAvaBroken ? defaultAva : avatarUser
+    // const userAvatar = isAvaBroken ? defaultAva : avatarUser
+    const userAvatar = avatarUser ? avatarUser : defaultAva
+
 
     const errorAvatarHandler = (e: SyntheticEvent<HTMLImageElement>) => {
         e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)

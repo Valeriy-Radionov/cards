@@ -11,6 +11,7 @@ import {backgroundImg} from "../../common/utils/utilitsBg";
 import {logoutTC} from "../../bll/authReducer";
 import {LinkArrow} from "../../common/components/link/LinkArrow";
 import {convertFileToBase64, uploadHandler} from "../../common/utils/workWithImages/uploadImageFileHandler";
+import {setAppErrorAC} from "../../bll/appReducer";
 
 export const Profile = () => {
     const dispatch = useAppDispatch
@@ -19,12 +20,15 @@ export const Profile = () => {
     const appStatus = useAppSelector(state => state.app.status)
     const disable = appStatus === "loading"
 
-    const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
-    let avatar = isAvaBroken && defaultAva || user?.avatar!
+    // const [isAvaBroken, setIsAvaBroken] = useState<boolean>(false)
+    // let avatar = isAvaBroken && defaultAva || user?.avatar!
+    let avatar = user?.avatar ? user.avatar : defaultAva
+
 
     const errorHandler = (e: SyntheticEvent<HTMLImageElement>) => {
-        e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)
+        // e.currentTarget.src ? setIsAvaBroken(false) : setIsAvaBroken(true)
         e.currentTarget.src = defaultAva
+        dispatch(setAppErrorAC("Incorrect image avatar format. Used files format: img"))
     }
 
     const logout = () => {
@@ -49,7 +53,7 @@ export const Profile = () => {
                     <div className={s.updatePhotoBlock}>
                         <label htmlFor={"addPhoto"} style={backgroundImg(updateAva)} className={s.updatePhoto}></label>
                         <input id={"addPhoto"} type={"file"} style={{display: "none"}} accept={"image/*"}
-                               onChange={e => uploadHandler(e, dispatch, undefined, true, isAvaBroken)}
+                               onChange={e => uploadHandler(e, dispatch, null, true)}
                                disabled={disable}></input>
                     </div>
                 </div>

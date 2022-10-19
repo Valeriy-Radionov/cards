@@ -58,6 +58,7 @@ export const PacksTableBody: React.FC<MapTableBodyPropsType> = ({
                                 packId={item._id}
                                 userId={item.user_id}
                                 packName={item.name}
+                                packImg={item.deckCover!}
                             />
                         </TableCell>
                     </TableRow>)
