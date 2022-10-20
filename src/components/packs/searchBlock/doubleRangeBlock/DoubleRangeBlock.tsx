@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './DoubleRangeBlock.module.css'
 import {Slider} from "@mui/material";
 import {useSearchParams} from "react-router-dom";
@@ -7,10 +7,12 @@ type DoubleRangeBlockPropsType = {
     addParamsMinMax: (min: string, max: string) => void
     minValue: number
     maxValue: number
+    clearParams: boolean
 }
 
 export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
     const [params, setParams] = useSearchParams()
+    const [resetValue, setResetValue] = useState(props.clearParams)
     const [value, setValue] = React.useState<number[]>([0, 100]);
 
     function valuetext(value: number) {
@@ -33,7 +35,6 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
             <Slider
                 min={props.minValue}
                 max={props.maxValue}
-                getAriaLabel={() => 'Temperature range'}
                 value={value}
                 onChange={handleChange}
                 valueLabelDisplay="auto"

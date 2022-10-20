@@ -25,11 +25,11 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
                             "&:hover": {bgcolor: "rgba(1, 112, 161, 0.52)"}
                         }}>
                             <TableCell align="center" component="th" scope="row" className={styleTableRow.row}>
-                                {!item.questionImg ? item.question :
+                                {item.question && item.question !== "no question" ? item.question :
                                     <img src={item.questionImg} className={styleTableRow.imgRow}/>}
                             </TableCell>
                             <TableCell align="center" className={styleTableRow.row}>
-                                {!item.answerImg ? item.answer :
+                                {item.answer && item.answer !== "no answer" ? item.answer :
                                     <img src={item.answerImg} className={styleTableRow.imgRow}/>}
                             </TableCell>
                             <TableCell align="left" className={styleTableRow.row}>
@@ -43,7 +43,8 @@ export const TableBodyCart: React.FC<MapTableBodyPropsType> = ({items, isMy}) =>
                                     />
                                     <ActionsCardTable isDisabled={item.entityStatusCard === 'loading'} id={item._id}
                                                       isMy={isMy} questionTxt={item.question} answerTxt={item.answer}
-                                                      questionImg={item.questionImg} answerImg={item.answerImg}/>
+                                                      questionImg={item.questionImg} answerImg={item.answerImg}
+                                    />
                                 </div>
                             </TableCell>
                         </TableRow>

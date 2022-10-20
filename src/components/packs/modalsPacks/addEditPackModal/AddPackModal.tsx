@@ -22,10 +22,13 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
 
     const namePack = useAppSelector(state => state.packs.cardPacks).filter(pack => id ? pack._id === id : pack)[0]?.name
     const dispatch = useAppDispatch
-    const [titlePack, setTitlePack] = useState<string>(namePack || "")
+
+    const packInputTitle = namePack ? namePack : ""
+    const [titlePack, setTitlePack] = useState<string>(packInputTitle)
     const [privatePack, setPrivatePack] = useState<boolean>(false)
-    const [image, setImage] = useState<string>("")
-    const editImagePack = packImg ? (image ? image : packImg) : (image ? image : packDefCover)
+
+    const editImagePack = packImg ? packImg : packDefCover
+    const [image, setImage] = useState(editImagePack)
 
     const addNewPacks = () => {
         dispatch(addNewPackTC(titlePack, privatePack, image))
@@ -49,8 +52,7 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
     return (
         <div>
 
-            <ModalWindow setTitlePack={setTitlePack}
-                         namePreviousBtn={isAddEditPack === "add" ? "Add new pack" : editImg()}
+            <ModalWindow namePreviousBtn={isAddEditPack === "add" ? "Add new pack" : editImg()}
                          titleModal={isAddEditPack === "add" ? "Add new pack" : "Edit Pack"}
                          actionSaveDeleteBtn={isAddEditPack === "add" ? addNewPacks : editPack}
                          isSaveDeleteModal={"Save"}
@@ -65,7 +67,7 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
                                                         height: "100px",
                                                         margin: "0 auto",
                                                         padding: "5px"
-                                                    }}/> : <img src={editImagePack} style={{
+                                                    }}/> : <img src={image} style={{
                         width: "150px",
                         height: "100px",
                         margin: "0 auto",

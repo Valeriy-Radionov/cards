@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {InputSearch} from "../../../common/components/searchInput/InputSearch";
 import {Toggle} from "../../../common/components/toggle/Toggle";
 import s from './SearchBlock.module.scss'
@@ -14,28 +14,41 @@ type SettingsBlockPropsType = {
     maxValue: number
 }
 
-export const SearchBlock = (props: SettingsBlockPropsType) => {
-
+export const SearchBlock: React.FC<SettingsBlockPropsType> = ({
+                                                                  paramsSearch,
+                                                                  addParamsName,
+                                                                  addParamsUserId,
+                                                                  addParamsMinMax,
+                                                                  user_id,
+                                                                  minValue,
+                                                                  maxValue
+                                                              }) => {
 
     const toggleClick = (value: boolean) => {
-        value && props.addParamsUserId('my')
-        !value && props.addParamsUserId('all')
+        value && addParamsUserId('my')
+        !value && addParamsUserId('all')
+    }
+    const [valueRange, setValueRange] = useState(false)
+    const clearFilters = () => {
+        addParamsMinMax(minValue.toString(), maxValue.toString())
+        setValueRange(true)
     }
 
     return (
         <div className={s.container}>
             <div className={s.item}>
                 <span>Search</span>
-                <InputSearch value={props.paramsSearch.get("packName") || ""} onChange={e => props.addParamsName(e)}/>
+                <InputSearch value={paramsSearch.get("packName") || ""} onChange={e => addParamsName(e)}/>
             </div>
             <div className={s.item}>
                 <span>Show cards pack</span>
-                <Toggle value={!!props.user_id} onClick={toggleClick}/>
+                <Toggle value={!!user_id} onClick={toggleClick}/>
             </div>
             <div className={s.item}>
                 <span>Number of cards</span>
-                <DoubleRangeBlock maxValue={props.maxValue} minValue={props.minValue}
-                                  addParamsMinMax={props.addParamsMinMax}/>
+                <DoubleRangeBlock maxValue={maxValue} minValue={minValue}
+                                  addParamsMinMax={addParamsMinMax} clearParams={valueRange}/>
+                <button onClick={clearFilters}>x</button>
             </div>
         </div>
     );
