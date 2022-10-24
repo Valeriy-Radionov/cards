@@ -28,17 +28,13 @@ export const SearchBlock: React.FC<SettingsBlockPropsType> = ({
         value && addParamsUserId('my')
         !value && addParamsUserId('all')
     }
-    const [valueRange, setValueRange] = useState(false)
-    const clearFilters = () => {
-        addParamsMinMax(minValue.toString(), maxValue.toString())
-        setValueRange(true)
-    }
 
     return (
         <div className={s.container}>
             <div className={s.item}>
                 <span>Search</span>
-                <InputSearch value={paramsSearch.get("packName") || ""} onChange={e => addParamsName(e)}/>
+                <InputSearch value={paramsSearch.get("packName") || ""}
+                             onChange={e => addParamsName(e)}/>
             </div>
             <div className={s.item}>
                 <span>Show cards pack</span>
@@ -46,9 +42,11 @@ export const SearchBlock: React.FC<SettingsBlockPropsType> = ({
             </div>
             <div className={s.item}>
                 <span>Number of cards</span>
-                <DoubleRangeBlock maxValue={maxValue} minValue={minValue}
-                                  addParamsMinMax={addParamsMinMax} clearParams={valueRange}/>
-                <button onClick={clearFilters}>x</button>
+                <DoubleRangeBlock maxValue={maxValue}
+                                  minValue={minValue}
+                                  addParamsMinMax={addParamsMinMax}
+                                  paramsSearch={paramsSearch}
+                />
             </div>
         </div>
     );

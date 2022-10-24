@@ -1,19 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import s from './DoubleRangeBlock.module.css'
-import {Slider} from "@mui/material";
+import s from './DoubleRangeBlock.module.scss'
+import {Button, IconButton, Slider} from "@mui/material";
 import {useSearchParams} from "react-router-dom";
+import {CleaningServices, Clear, FilterAltOffRounded, FilterHdrRounded, LockReset} from "@mui/icons-material";
 
 type DoubleRangeBlockPropsType = {
-    addParamsMinMax: (min: string, max: string) => void
     minValue: number
     maxValue: number
-    clearParams: boolean
+    paramsSearch: URLSearchParams
+    addParamsMinMax: (min: string, max: string) => void
 }
 
 export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
     const [params, setParams] = useSearchParams()
-    const [resetValue, setResetValue] = useState(props.clearParams)
     const [value, setValue] = React.useState<number[]>([0, 100]);
+    const [clear, setClear] = useState(false)
+
+    const clearFilters = () => {
+        setClear(true)
+        props.paramsSearch.set("packName", "")
+        props.addParamsMinMax(props.minValue.toString(), props.maxValue.toString())
+        setValue([props.minValue, props.maxValue])
+    }
+    const resetSlider = () => {
+        setClear(false)
+    }
 
     function valuetext(value: number) {
         return `${value}`;
@@ -25,14 +36,15 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
     }
 
     useEffect(() => {
-        const min = params.get('min')
-        const max = params.get('max')
+        const min = params.get("min")
+        const max = params.get("max")
         setValue([Number(min) || props.minValue, Number(max) || props.maxValue])
     }, [props.minValue, props.maxValue])
 
     return (
         <div className={s.container}>
             <Slider
+                onClick={resetSlider}
                 min={props.minValue}
                 max={props.maxValue}
                 value={value}
@@ -40,6 +52,7 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
             />
+            <IconButton onClick={clearFilters}><CleaningServices color={"action"} className={s.item}/></IconButton>
         </div>
     );
 };

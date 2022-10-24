@@ -21,7 +21,10 @@ export const Answer: React.FC<AnswerPropsType> = (props) => {
             <div className={s.block}>
                 <div className={s.question}>
                     <span><b>Answer:</b></span>
-                    <span>{props.card && props.card.answer}</span>
+                    {props.card?.answerImg ?
+                        <img src={props.card.answerImg}/> :
+                        <span>{props.card && props.card.answer}</span>
+                    }
                 </div>
                 <label>Rate yourself:</label>
                 <FormControl>

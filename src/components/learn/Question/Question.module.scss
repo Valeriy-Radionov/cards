@@ -1,32 +1,47 @@
 @import "../../../common/styles/mixins";
 
 .main {
-    //@include width-height(100%, 100%);
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    align-items: flex-start;
+  //@include width-height(100%, 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: flex-start;
 
-    .container {
+  .container {
+    width: 100%;
 
-        .block {
+    .block {
+      .question {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        //display: flex;
+        //flex-direction: row;
+        //align-items: flex-end;
 
-            .question {
-                font-family: 'Montserrat', sans-serif;
-                font-size: 24px;
-                display: flex;
-                flex-direction: row;
-                align-items: flex-end;
-                & span {
-                    font-family: 'Montserrat', sans-serif;
-                    padding-right: 10px;
-                    font-size: 16px;
-                    line-height: 24px;
-                }
+        & span {
+          font-family: 'Montserrat', sans-serif;
+          padding-right: 10px;
+          font-size: 16px;
+          line-height: 24px;
         }
+
+        .containerImg {
+          width: 100%;
+
+          & img {
+            margin: 0 auto;
+            border-radius: 2px;
+            width: 100%;
+            height: 150px;
+          }
+        }
+      }
     }
-}
-    .attempts {
-        opacity: 0.5;
-    }
+  }
+
+  .attempts {
+    opacity: 0.5;
+  }
 }

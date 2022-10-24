@@ -16,7 +16,10 @@ export const Question: React.FC<QuestionPropsType> = (props) => {
                     {props.gotCardsInDeck
                         ? <div className={style.question}>
                             <span><b>Question:</b></span>
-                            <span>{props.card && props.card.question}</span>
+                            {props.card?.questionImg ?
+                                <div className={style.containerImg}><img src={props.card.questionImg}/></div> :
+                                <span>{props.card && props.card.question}</span>
+                            }
                         </div>
                         :
                         <span>No cards</span>

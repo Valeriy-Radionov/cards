@@ -2,6 +2,7 @@
 
 .container {
   //height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,12 +11,16 @@
   .headerBlock {
     text-align: center;
     height: 100%;
+    width: 100%;
 
     .link {
       position: absolute;
       left: 142px;
       top: 84px;
       color: #FFFFFF;
+      @media (max-width: 705px) {
+        left: 10px
+      }
 
       a {
         display: flex;
@@ -48,6 +53,9 @@
       padding: 0 15px 0 15px;
       height: 36px;
       align-items: center;
+      @media (max-width: 441px) {
+        width: 100%;
+      }
     }
   }
 }
