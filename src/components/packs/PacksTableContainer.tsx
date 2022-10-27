@@ -26,14 +26,13 @@ export const PacksTableContainer: React.FC<BasicTablePropsType> = ({
             <TableContainer sx={{height: 432}}>
                 <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
                     <TableHead>
-                        <TableRow className={style.headerRow}>
+                        <TableRow>
                             <TableCell align="left" className={style.header}>Cover</TableCell>
                             <TableCell align="left" className={style.header}>Name</TableCell>
                             <TableCell align="left" className={style.header}>Cards</TableCell>
                             <TableCell align="left" className={style.header}>Last Updated</TableCell>
-                            <TableCell align="left" className={style.header} onClick={addParamsUpdate} sx={{
-                                "&:hover": {cursor: "pointer"}
-                            }}>
+                            <TableCell align="left" className={`${style.header} ${style.filterCell}`}
+                                       onClick={addParamsUpdate}>
                                 Created by
                                 <img src={arrow}
                                      style={sorting ? {

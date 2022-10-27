@@ -12,7 +12,7 @@
     align-items: center;
   }
 
-  .headerCell {
+  .row {
     @include font(normal, 400, 14px, 27px);
     color: #0028f3;
   }

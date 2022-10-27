@@ -6,8 +6,9 @@
   flex-direction: column;
   @include width-height(100%, 100%);
   padding: 135px 142px 90px 142px;
-  background-image: url("../../../src/assets/image/background.svg");
-  @include backgroundImg(cover, no-repeat, center);
+  background: rgb(147 197 253);
+  background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+  background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
   @media (max-width: 900px) {
     padding: 135px 20px 50px 20px;
   }
@@ -28,10 +29,10 @@
         font-family: $titleFontFamily;
         display: flex;
         align-items: center;
-        color: black;
+        color: $textWhiteColor;
 
         &:hover {
-          color: $textWhiteColor;
+          color: $greenColor;
         }
 
         img {
@@ -43,6 +44,7 @@
 
     .packName {
       margin-bottom: 28px;
+      color: $textWhiteColor;
 
       img {
         display: block;
@@ -104,7 +106,6 @@
           box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35);
 
         }
-
       }
     }
   }

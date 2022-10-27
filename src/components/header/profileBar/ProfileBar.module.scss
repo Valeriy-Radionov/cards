@@ -8,12 +8,12 @@
   .nickName {
     font-family: $titleFontFamily;
     margin-right: 10px;
-    border-bottom: 2px dashed white;
+    border-bottom: 2px solid white;
     color: white;
 
     &:hover {
       cursor: pointer;
-      color: #366efe;
+      color: $greenColor;
     }
   }
 

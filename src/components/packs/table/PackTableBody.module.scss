@@ -5,11 +5,11 @@
   @include backgroundImg(cover, no-repeat, center);
 }
 
-.headerCell {
-  @include font(normal, 400, 16px, 27px);
+.row {
+  @include font(normal, 400, 14px, 27px);
   color: black;
 }
 
 .label {
-  @include width-height(100%, 100%)
+  @include width-height(100%, 100%);
 }

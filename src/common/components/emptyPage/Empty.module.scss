@@ -1,4 +1,5 @@
 @import "../../styles/mixins";
+@import "../../styles/variables";
 
 .block {
   display: flex;
@@ -8,21 +9,18 @@
   margin: 86px 0 0 0;
 
   span {
-    //font-family: 'Montserrat';
     @include font(normal, 400, 16px, 20px);
     opacity: 0.5;
     margin: 0 0 32px;
+    color: $textWhiteColor;
   }
 
   .addCard {
     @include width-height(184px, 36px);
+    @include font(normal, 500, 16px, 20px);
     border: none;
     outline: none;
-
-    @include font(normal, 500, 16px, 20px);
     letter-spacing: 0.01em;
-    //font-family: 'Montserrat';
-
     color: #FFFFFF;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);

@@ -25,24 +25,34 @@
   .firstItem {
     border: 1px solid #D9D9D9;
     border-radius: 2px 0 0 2px;
-    background-color: #FFFFFF;
+    background-color: #acacac;
+
+    &:hover {
+      border: 2px solid black;
+    }
   }
 
   .activeFirstItem {
-    background-color: $primaryColor;
+    background-color: $greenColor;
     border-radius: 2px 0 0 2px;
+    border: 1px solid $textWhiteColor;
     color: $textWhiteColor;
   }
 
   .secondItem {
     border: 1px solid #D9D9D9;
     border-radius: 0 2px 2px 0;
-    background-color: $textWhiteColor;
+    background-color: #acacac;
+
+    &:hover {
+      border: 2px solid black;
+    }
   }
 
   .activeSecondItem {
-    background-color: $primaryColor;
+    background-color: $greenColor;
     border-radius: 0 2px 2px 0;
+    border: 1px solid $textWhiteColor;
     color: $textWhiteColor;
   }
 }

@@ -1,4 +1,7 @@
+@import "src/common/styles/mixins";
+
 .btn {
+  @include font(normal, 600, 22px, 27px);
   box-sizing: border-box;
   z-index: 1;
   font-weight: 500;

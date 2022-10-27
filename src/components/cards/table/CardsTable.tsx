@@ -37,11 +37,12 @@ export const BasicTable: React.FC<BasicTablePropsType> = ({
             <TableContainer>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
-                        <TableRow className={style.row}>
+                        <TableRow>
                             <TableCell align="center" className={style.headerCell}>Question</TableCell>
                             <TableCell align="center" className={style.headerCell}>Answer</TableCell>
                             <TableCell align="left" className={style.headerCell}>Last Updated</TableCell>
-                            <TableCell align="left" onClick={addParamsGrade} className={style.headerCell}>
+                            <TableCell align="left" onClick={addParamsGrade}
+                                       className={`${style.headerCell} ${style.filterRow}`}>
                                 Grade
                                 <img src={arrow}
                                      style={grade ? {
