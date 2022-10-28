@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/cards/static/css/main.5e535875.css",
+    "main.js": "/cards/static/js/main.ea757fba.js",
+    "static/js/787.28cb0dcd.chunk.js": "/cards/static/js/787.28cb0dcd.chunk.js",
+    "static/media/Montserrat-Regular.svg": "/cards/static/media/Montserrat-Regular.0862c5facfeba4f088ae.svg",
+    "static/media/Montserrat-Regular.eot": "/cards/static/media/Montserrat-Regular.3e8ee43c43e660b08ee5.eot",
+    "static/media/Montserrat-Regular.ttf": "/cards/static/media/Montserrat-Regular.fcdafe1ac22c416109a3.ttf",
+    "static/media/Foo-Regular.svg": "/cards/static/media/Foo-Regular.5b486424e1c298608c7d.svg",
+    "static/media/Montserrat-Regular.woff": "/cards/static/media/Montserrat-Regular.7b1b5c543bac757f0df0.woff",
+    "static/media/Airborne.svg": "/cards/static/media/Airborne.a90fa8b65b8a24e7bbb7.svg",
+    "static/media/userProfile.webp": "/cards/static/media/userProfile.9c4c06890469f2f2e643.webp",
+    "static/media/Foo-Regular.eot": "/cards/static/media/Foo-Regular.35f4a6528fe61e303d12.eot",
+    "static/media/Foo-Regular.ttf": "/cards/static/media/Foo-Regular.a35d6a0bb762adad8604.ttf",
+    "static/media/Airborne.eot": "/cards/static/media/Airborne.caaf457d2b814884ab97.eot",
+    "static/media/Airborne.ttf": "/cards/static/media/Airborne.b22c5419f93564b43ec6.ttf",
+    "static/media/display-password.png": "/cards/static/media/display-password.ed9412092c4d29799580.png",
+    "static/media/Foo-Regular.woff": "/cards/static/media/Foo-Regular.850f82d909328b27c0a8.woff",
+    "static/media/Airborne.woff": "/cards/static/media/Airborne.1e7b841b73db94822e63.woff",
+    "static/media/cardsApp.svg": "/cards/static/media/cardsApp.ab9fb2936489e25a9984c7ef10ad8a27.svg",
+    "static/media/defaultCover.svg": "/cards/static/media/defaultCover.b983d3cb95a77793fafe634bbaa6ff5d.svg",
+    "static/media/search.svg": "/cards/static/media/search.9ceb278fce264533e46fe31dfb9733b0.svg",
+    "static/media/Delete.svg": "/cards/static/media/Delete.4917c471a6c3d7ecc0ebd1dc25171ba0.svg",
+    "static/media/logoutprofileLogOut.svg": "/cards/static/media/logoutprofileLogOut.ef2fcfa103ae41d4141f0b8368020e1f.svg",
+    "static/media/Edit.svg": "/cards/static/media/Edit.d2962525fc4ca1f53b8ebcd1ae580d51.svg",
+    "static/media/Union.svg": "/cards/static/media/Union.bcf9fd18a6c2b3354645e768a27bb111.svg",
+    "static/media/userprofileIcon.svg": "/cards/static/media/userprofileIcon.f8ed78de6623ffd92d283004638e74c0.svg",
+    "static/media/backArrow.svg": "/cards/static/media/backArrow.e7bd121e671bac34c4e80cc1cd930451.svg",
+    "index.html": "/cards/index.html",
+    "static/media/sortingArrow.svg": "/cards/static/media/sortingArrow.c138a6aacaee85c4e37db17bc0d2a1a0.svg",
+    "static/media/teacherlearn.svg": "/cards/static/media/teacherlearn.98ddc8f9376c79b05bb474310295b927.svg",
+    "static/media/Page 1close.svg": "/cards/static/media/Page 1close.97f95338c3976d30e29ac67fc8e15e59.svg",
+    "static/media/actions.svg": "/cards/static/media/actions.4cc60b28e635bd7265ee7b2c1812758d.svg",
+    "main.5e535875.css.map": "/cards/static/css/main.5e535875.css.map",
+    "main.ea757fba.js.map": "/cards/static/js/main.ea757fba.js.map",
+    "787.28cb0dcd.chunk.js.map": "/cards/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e535875.css",
+    "static/js/main.ea757fba.js"
+  ]
+}
