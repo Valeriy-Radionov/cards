@@ -1,20 +1,20 @@
 import React, {ChangeEvent, SyntheticEvent, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../../bll/store";
+import {useAppDispatch} from "../../../../bll/store";
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import {addNewCardTC, updateCardTC} from "../../../../bll/cardsReducer";
 import {
+    Button,
     FormControl,
+    FormHelperText,
+    FormLabel,
     MenuItem,
     Select,
     SelectChangeEvent,
-    FormHelperText,
-    TextField,
-    IconButton,
-    Button, FormLabel
+    TextField
 } from "@mui/material";
 import s from './AddCardModal.module.scss'
 import stroke from "../../../../assets/image/Edit.svg";
-import {convertFileToBase64, uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
+import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
 import defImg from "../../../../assets/image/defaultCover.svg"
 import {setAppErrorAC} from "../../../../bll/appReducer";
 
@@ -112,7 +112,7 @@ export const AddCardModal: React.FC<AddCardModalPropsType> = ({
                          isEdit={addEditModal}
             >
                 <div className={s.blockForm}>
-                    <FormControl sx={{m: 1, width: 347}}>
+                    <FormControl sx={{m: 1, width: "91%"}}>
                         {addEditModal === "add" ?
                             <>
                                 <FormHelperText>Choose a question format</FormHelperText>

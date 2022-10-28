@@ -4,10 +4,9 @@ import styleModal from "./AddPackModal.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
-import style from "../../../../components/packs/modalsPacks/addEditPackModal/AddPackModal.module.scss";
-import styleBtn from "../../../../common/components/button/SuperButton.module.scss"
 import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
 import packDefCover from "../../../../assets/image/defaultCover.svg";
+import {Button} from "@mui/material";
 
 
 type AddPackModalPropsType = {
@@ -71,13 +70,11 @@ export const AddPackModal: React.FC<AddPackModalPropsType> = ({id, isAddEditPack
                         margin: "0 auto",
                         padding: "5px"
                     }}/>}
-                    <div className={style.updatePhotoBlock}>
-                        <label htmlFor={"choseImg"}
-                               className={`${style.updatePhoto} ${styleBtn.buttonDef}`}>Add
-                            image</label>
-                        <input id={"choseImg"} type={"file"} style={{display: "none"}} accept={"image/*"}
-                               onChange={e => uploadHandler(e, dispatch, setImage, false)}></input>
-                    </div>
+                    <Button variant="contained" component="label">
+                        Upload
+                        <input hidden accept="image/*" type="file"
+                               onChange={e => uploadHandler(e, dispatch, setImage, false)}/>
+                    </Button>
                     <div className={styleModal.selectionBlock}>
                         <input type={"checkbox"} className={styleModal.checkbox} onChange={privatePackHandler}/>
                         <label className={styleModal.description}>Private pack</label>

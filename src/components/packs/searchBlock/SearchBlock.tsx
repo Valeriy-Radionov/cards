@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {InputSearch} from "../../../common/components/searchInput/InputSearch";
 import {Toggle} from "../../../common/components/toggle/Toggle";
 import s from './SearchBlock.module.scss'

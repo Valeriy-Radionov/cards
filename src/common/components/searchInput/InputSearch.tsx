@@ -1,6 +1,6 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react';
 import style from './InputSearch.module.scss'
-import searchIcon from '../../../assets/image/Union.png'
+import searchIcon from '../../../assets/image/search.svg'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 

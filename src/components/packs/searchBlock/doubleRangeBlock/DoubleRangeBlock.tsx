@@ -44,6 +44,7 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
     return (
         <div className={s.container}>
             <Slider
+                className={s.slider}
                 aria-label="Default"
                 onClick={resetSlider}
                 min={props.minValue}
