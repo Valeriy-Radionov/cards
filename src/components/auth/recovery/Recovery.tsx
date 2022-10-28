@@ -5,7 +5,7 @@ import {useFormik} from "formik";
 import SuperInputText from "../../../common/components/superInput/SuperInputText";
 import SuperButton from "../../../common/components/button/SuperButton";
 import style from './Recovery.module.css'
-import authStyle from '../AuthPageContainer.module.css'
+import authStyle from '../AuthPageContainer.module.scss'
 import {PATH} from "../../../common/routes/Routs";
 import {Link} from 'react-router-dom';
 import {sendEmail, toggleIsEmailSentAC} from "../../../bll/authReducer";
@@ -17,25 +17,25 @@ export const Recovery = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: ''
+            email: ""
         },
         onSubmit: values => {
             dispatch(sendEmail({
                 email: values.email,
-                from: '',
-                message: process.env.NODE_ENV === 'development'
-                    ? `Follow the link to create a new password: <a href='http://localhost:3000/#/set-password/$token$'> Link</a>`
-                    : `Follow the link to create a new password: <a href='https://valeriy-radionov.github.io/app-cards/#/set-password/$token$'> Link</a>`
+                from: "",
+                message: process.env.NODE_ENV === "development"
+                    ? `Follow the link to create a new password: <a href="http://localhost:3000/#/set-password/$token$"> Link</a>`
+                    : `Follow the link to create a new password: <a href="https://valeriy-radionov.github.io/app-cards/#/set-password/$token$"> Link</a>`
             }))
         },
         validate: values => {
             if (!values.email) {
                 return {
-                    email: 'Email is required'
+                    email: "Email is required"
                 }
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 return {
-                    email: 'Invalid email address'
+                    email: "Invalid email address"
                 }
             }
         }
@@ -52,25 +52,25 @@ export const Recovery = () => {
             <div className={authStyle.block}>
                 {!isSentEmail
                     ? <>
-                        <h1 style={{margin: '0 0 54.19px'}}>Forgot your password?</h1>
+                        <h1 style={{margin: "0 0 60px"}}>Forgot your password?</h1>
                         <form onSubmit={formik.handleSubmit}>
                             <SuperInputText
                                 className={style.superInput}
-                                {...formik.getFieldProps('email')}
-                                placeholder={'Email'}
+                                {...formik.getFieldProps("email")}
+                                placeholder={"Email"}
                             />
-                            <hr />
+                            <hr/>
                             <div className={style.error}>{formik.errors.email ? formik.errors.email : null}</div>
-                            <p style={{margin: '25.93px 0 0', opacity: '0.5'}}>Enter your email address and we will send
+                            <p style={{margin: "25.93px 0 0", opacity: "0.5"}}>Enter your email address and we will send
                                 you further
                                 instructions</p>
-                            <div style={{margin: '65px 0 31px'}}>
-                                <SuperButton style={{width: '100%'}}
-                                             type={'submit'}>Send instructions</SuperButton>
+                            <div style={{margin: "65px 0 31px"}}>
+                                <SuperButton style={{width: "100%"}}
+                                             type={"submit"}>Send instructions</SuperButton>
                             </div>
                         </form>
-                        <span style={{margin: '0 0 11px', fontWeight: '600', opacity: '0.5'}}>Did you remember yor password</span>
-                        <Link style={{fontWeight: '600', color: '#366EFF', fontSize: '16px'}} to={PATH.LOGIN}>Try
+                        <span style={{margin: "0 0 11px", opacity: "0.5"}}>Did you remember yor password</span>
+                        <Link style={{color: "#366EFF"}} to={PATH.LOGIN}>Try
                             logging in</Link>
                     </>
                     : <EmailSentPage/>

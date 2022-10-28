@@ -1,12 +1,11 @@
 @import "../../../common/styles/mixins";
+@import "../../../common/styles/variables";
 
 .container {
-  @include width-height(100%, 100%);
+  @include width-height(100%, 100vh);
+  @include backgroundStyle();
   display: flex;
   justify-content: center;
-  padding: 120px 0 0 0;
-  flex-direction: column;
-  display: flex;
   flex-direction: column;
   align-items: center;
 
@@ -99,6 +98,7 @@
         text-align: right;
         color: #000000;
         margin-bottom: 50px;
+        text-decoration: underline;
       }
 
       .descriptionInfo {
@@ -112,8 +112,11 @@
         @include font(normal, 600, 16px, 24px);
         text-align: center;
         margin: 20px 0px 20px 0px;
-        text-decoration-line: underline;
-        color: #366EFF;
+        color: $primaryColor;
+
+        &:hover {
+          text-decoration-line: underline;
+        }
       }
     }
   }

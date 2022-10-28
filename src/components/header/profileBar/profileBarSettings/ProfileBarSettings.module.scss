@@ -1,12 +1,15 @@
 @import "../../../../common/styles/mixins.scss";
+@import "../../../../common/styles/variables";
 
 .container {
+  @include font(normal, 400, 16px, 20px);
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 55px;
-  right: 125px;
-  background-color: white;
+  right: 122px;
+  background: $primaryColor;
+  color: $textWhiteColor;
   border: 1px solid #CFCFCF;
   border-top: none;
   box-shadow: 2px 4px 9px rgba(0, 0, 0, 0.6);
@@ -16,7 +19,7 @@
 
   &:before {
     @include width-height(20px, 20px);
-    background-color: white;
+    background-color: $primaryColor;
     border: 1px solid #CFCFCF;
     content: '';
     left: 60px;
@@ -34,10 +37,12 @@
 
     &:hover {
       cursor: pointer;
+      text-decoration: underline;
     }
 
     .items {
       margin-right: 10px;
+
       @include width-height(16px, 16px);
       @include backgroundImg(cover, no-repeat, center);
     }

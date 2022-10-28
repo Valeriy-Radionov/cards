@@ -5,11 +5,10 @@ import {useFormik} from "formik";
 import SuperButton from "../../../common/components/button/SuperButton";
 import {Navigate, NavLink} from "react-router-dom";
 import {PATH} from "../../../common/routes/Routs";
-import {authAPI} from "../../../api/auth/auth-api";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {loginTC} from "../../../bll/authReducer";
-import s_container from '../../../common/styles/сontainer.module.scss'
-import {Checkbox, FormControlLabel} from "@mui/material";
+import {Checkbox} from "@mui/material";
+import {validatorPassword} from "../../../common/utils/errors-utils";
 
 type FormikErrorType = {
     email?: string
@@ -24,7 +23,6 @@ export const Login = () => {
 
     const onClickShowPassword = () => {
         setTogglePassword(!togglePassword)
-        console.log(togglePassword)
     }
     const classNameBtn = togglePassword ? style.passwordHidden : style.password
 
@@ -36,17 +34,7 @@ export const Login = () => {
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
-            if (!values.email) {
-                errors.email = "required"
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
-            }
-
-            if (!values.password) {
-                errors.password = "required"
-            } else if (values.password.length < 8) {
-                errors.password = "Password must be more 8 symbols"
-            }
+            validatorPassword(values, errors)
             return errors;
         },
         onSubmit: values => {
@@ -55,9 +43,7 @@ export const Login = () => {
             formik.resetForm()
         },
     });
-    const ping = () => {
-        authAPI.login({email: 'ursegovnikolaj@gmail.com', password: '12345678', rememberMe: true})
-    }
+
     if (isLoggedIn) {
         return <Navigate to={PATH.PROFILE}/>
     }
@@ -98,7 +84,6 @@ export const Login = () => {
                     <NavLink to={PATH.REGISTR} className={style.signUpLink}>Sign Up</NavLink>
                 </form>
             </div>
-            <button onClick={ping}>ping</button>
         </div>
     );
 };

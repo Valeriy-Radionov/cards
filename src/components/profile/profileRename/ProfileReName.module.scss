@@ -46,6 +46,12 @@
         border-radius: 2px;
         color: $textWhiteColor;
         border: none;
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 5px 0 $primaryColor inset, 0 0 5px 2px $primaryColor;
+
+        }
       }
     }
   }

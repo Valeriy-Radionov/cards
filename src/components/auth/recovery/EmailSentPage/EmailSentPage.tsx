@@ -13,11 +13,11 @@ export const EmailSentPage = () => {
 
     return (
         <>
-            <h1 style={{margin: '0 0 29px'}}>Check Email</h1>
+            <h1 style={{margin: "0 0 29px"}}>Check Email</h1>
             <img className={style.emailImg} src={emailImg} alt="email img"/>
             <p className={style.mainDescription}>We’ve sent an Email with instructions to
                 example@mail.com</p>
-            <SuperButton style={{width: '100%'}} onClick={redirectHandler}>Back to login</SuperButton>
+            <SuperButton style={{width: "100%"}} onClick={redirectHandler}>Back to login</SuperButton>
         </>
     );
 };

@@ -1,15 +1,13 @@
 @import "src/common/styles/mixins";
+@import "src/common/styles/variables";
 
 .bodyBlock {
   display: flex;
   flex-direction: column;
-  padding: 35px 24px 0px 24px;
+  padding: 35px 24px 0 24px;
 
   .titleBlock {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 20px;
+    @include font(normal, 400, 13px, 20px);
     opacity: 50%;
   }
 
@@ -20,26 +18,25 @@
   }
 
   .updatePhotoBlock {
+    @include font(normal, 400, 14px, 20px);
     @include width-height(100%, 36px);
     padding-top: 5px;
 
     .updatePhoto {
       display: flex;
       @include width-height(100%, 100%);
+      border-color: $primaryColor;
       align-items: center;
       justify-content: center;
       border-radius: 0.6em;
-
-      &:hover {
-        color: green;
-      }
     }
   }
 
   .selectionBlock {
+    @include font(normal, 400, 13px, 20px);
     display: flex;
     align-items: center;
-    margin: 30px 0px 34px 0px;
+    margin: 30px 0 34px 0;
 
     .checkbox {
       height: 18px;
@@ -47,6 +44,7 @@
     }
 
     .description {
+      font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 500;
       line-height: 20px;

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import s from './DoubleRangeBlock.module.scss'
-import {Button, IconButton, Slider} from "@mui/material";
+import {IconButton, Slider} from "@mui/material";
 import {useSearchParams} from "react-router-dom";
-import {CleaningServices, Clear, FilterAltOffRounded, FilterHdrRounded, LockReset} from "@mui/icons-material";
+import {CleaningServices} from "@mui/icons-material";
 
 type DoubleRangeBlockPropsType = {
     minValue: number
@@ -44,6 +44,7 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
     return (
         <div className={s.container}>
             <Slider
+                aria-label="Default"
                 onClick={resetSlider}
                 min={props.minValue}
                 max={props.maxValue}
@@ -52,7 +53,7 @@ export const DoubleRangeBlock = (props: DoubleRangeBlockPropsType) => {
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
             />
-            <IconButton onClick={clearFilters}><CleaningServices color={"action"} className={s.item}/></IconButton>
+            <IconButton onClick={clearFilters} className={s.btn}><CleaningServices color={"action"} className={s.item}/></IconButton>
         </div>
     );
 };

@@ -13,7 +13,7 @@ export const BlockButtonModal: React.FC<BlockButtonModalType> = ({
                                                                      isSaveDeleteModal,
                                                                  }) => {
 
-    const styleButton = isSaveDeleteModal === 'Delete'? style.deleteBtn : style.defaultBtn
+    const styleButton = isSaveDeleteModal === 'Delete' ? style.deleteBtn : style.defaultBtn
 
     const onCloseHandler = () => {
         toggleModal()
@@ -24,8 +24,8 @@ export const BlockButtonModal: React.FC<BlockButtonModalType> = ({
     }
     return (
         <div className={style.buttonBlock}>
-            <button className={style.close} onClick={onCloseHandler}>Cancel</button>
-            <button className={ styleButton} onClick={onActionHandler}>{isSaveDeleteModal}</button>
+            <button className={style.defaultBtn} onClick={onCloseHandler}>Cancel</button>
+            <button className={styleButton} onClick={onActionHandler}>{isSaveDeleteModal}</button>
         </div>
     );
 };

@@ -1,13 +1,14 @@
 import React from 'react';
 import {
+    createTheme,
+    Paper,
     Table,
     TableCell,
     TableContainer,
     TableHead,
+    TablePagination,
     TableRow,
-    Paper,
-    TableFooter,
-    TablePagination
+    ThemeProvider
 } from '@mui/material'
 import {CardsType} from "../../../bll/cardsReducer";
 import arrow from '../../../assets/image/sortingArrow.svg'
@@ -31,42 +32,47 @@ export const BasicTable: React.FC<BasicTablePropsType> = ({
                                                               stateItems,
                                                               disabledPaginate
                                                           }) => {
+    const theme = createTheme({
+        typography: {
+            fontFamily: "Montserrat",
+            fontSize: 14
+        }
+    })
 
     return (
-        <Paper sx={{width: '100%', overflow: 'hidden'}}>
-            <TableContainer>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center" className={style.headerCell}>Question</TableCell>
-                            <TableCell align="center" className={style.headerCell}>Answer</TableCell>
-                            <TableCell align="left" className={style.headerCell}>Last Updated</TableCell>
-                            <TableCell align="left" onClick={addParamsGrade}
-                                       className={`${style.headerCell} ${style.filterRow}`}>
-                                Grade
-                                <img src={arrow}
-                                     style={grade ? {
-                                         transform: "rotate(180deg)",
-                                         paddingLeft: "2px",
-                                     } : {
-                                         paddingLeft: "2px",
-                                     }}
-                                     alt='arrow'/>
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    {children}
-                </Table>
-            </TableContainer>
-            <TablePagination
-                component={"div"}
-                rowsPerPageOptions={[5, 10, 25]}
-                count={+stateItems.cardsTotalCount}
-                rowsPerPage={+stateItems.pageCount}
-                page={+stateItems.page - 1}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-        </Paper>
+        <ThemeProvider theme={theme}>
+            <Paper sx={{width: '100%', overflow: 'hidden'}}>
+                <TableContainer sx={{height: 432}}>
+                    <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow sx={{fontFamily: "Montserrat"}}>
+                                <TableCell align="center" className={style.headerCell}>Question</TableCell>
+                                <TableCell align="center" className={style.headerCell}>Answer</TableCell>
+                                <TableCell align="left" className={style.headerCell}>Last Updated</TableCell>
+                                <TableCell align="left" onClick={addParamsGrade}
+                                           className={`${style.headerCell} ${style.filterRow}`}>
+                                    Grade
+                                    <img src={arrow}
+                                         style={grade ? {
+                                             transform: "rotate(180deg)"
+                                         } : {}}
+                                         alt='arrow'/>
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        {children}
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    component={"div"}
+                    rowsPerPageOptions={[5, 10, 25]}
+                    count={+stateItems.cardsTotalCount}
+                    rowsPerPage={+stateItems.pageCount}
+                    page={+stateItems.page - 1}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+        </ThemeProvider>
     );
 }

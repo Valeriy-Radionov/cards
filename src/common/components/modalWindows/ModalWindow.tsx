@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import styleModal from "./ModalWindow.module.scss";
 import closeBtn from "../../../assets/image/Page 1close.svg";
 import {BlockButtonModal} from "./ButtonModal/BlockButtonModal";
-import {useAppDispatch, useAppSelector} from "../../../bll/store";
+import {useAppSelector} from "../../../bll/store";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -12,7 +12,7 @@ const style = {
     left: '50%',
     padding: '0%',
     transform: 'translate(-50%, -50%)',
-    width: 395,
+    width: 330,
     minHeight: 204,
     bgcolor: 'white',
     boxShadow: 24,

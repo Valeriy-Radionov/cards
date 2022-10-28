@@ -3,12 +3,11 @@
 
 .container {
   @include width-height(100%, 100vh);
+  @include backgroundStyle();
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("../../../src/assets/image/background.svg");
-  @include backgroundImg(cover, no-repeat, center);
 
   .link {
     position: absolute;
@@ -24,9 +23,13 @@
 
     a {
       font-family: $titleFontFamily;
-      color: black;
+      color: white;
       display: flex;
       align-items: center;
+
+      &:hover {
+        color: $greenColor;
+      }
 
       img {
         margin: 0 10px 0 0;
@@ -43,10 +46,6 @@
     flex-direction: column;
     align-items: center;
     border-radius: 2px;
-    box-shadow: -15px -15px 2px -5px rgba(123, 51, 90, .5),
-    -15px 15px 2px -5px rgba(60, 74, 123, .5),
-    15px -15px 2px -5px rgba(255, 0, 0, .5),
-    15px 15px 2px -5px rgba(60, 123, 68, .5);
     @media (max-width: 768px) {
       @include width-height(340px, 350px);
     }

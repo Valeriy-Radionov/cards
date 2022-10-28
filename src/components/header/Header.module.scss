@@ -1,24 +1,29 @@
 @import "src/common/styles/variables";
+@import "src/common/styles/mixins";
 
 .container {
   display: flex;
-  background: linear-gradient(to right top, rgb(200, 48, 95) 50%, rgb(254, 108, 95) 100%);
+  background: radial-gradient(at 75% 0, #484847, #090909);
   flex-direction: column;
   min-height: 50px;
   position: fixed;
   top: 0;
   width: 100%;
-  box-shadow: 0 4px 4px 0 rgb(230, 214, 219);
+  box-shadow: 0 3px 4px 0 rgb(230, 214, 219);
   z-index: 9999;
 
   .blockLink {
     height: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding-right: 136px;
     align-items: center;
     @media (max-width: 768px) {
       padding-right: 40px;
+    }
+
+    .icon {
+      @include width-height(200px, 50px);
     }
 
     .linkNavBar {

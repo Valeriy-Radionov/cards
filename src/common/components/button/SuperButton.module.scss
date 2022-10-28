@@ -1,4 +1,5 @@
 @import "src/common/styles/mixins";
+@import "src/common/styles/variables";
 
 .btn {
   @include font(normal, 600, 22px, 27px);
@@ -8,9 +9,8 @@
   min-width: 120px;
   appearance: none;
   background-color: transparent;
-  border: 2px solid red;
+  border: 2px solid white;
   border-radius: 0.6em;
-  color: red;
   cursor: pointer;
   font-size: 16px;
   justify-content: center;
@@ -27,15 +27,12 @@
 }
 
 .buttonDef {
-  border-color: #366EFF;
   color: white;
-  box-shadow: 0 0 40px 40px #366EFF inset, 0 0 0 0 #366EFF;
-  -webkit-transition: all 150ms ease-in-out;
-  transition: all 150ms ease-in-out;
+  box-shadow: 0 0 40px 40px $primaryColor inset, 0 0 0 0 $primaryColor,;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #366EFF inset, 0 0 10px 4px #366EFF;
-    color: darkgray;
+    box-shadow: 0 0 10px 0 $primaryColor inset, 0 0 10px 4px $primaryColor;
+    background-color: $primaryColor;
   }
 }
 

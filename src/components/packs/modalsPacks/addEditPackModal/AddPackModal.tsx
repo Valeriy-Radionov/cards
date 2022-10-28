@@ -1,16 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
 import {ModalWindow} from "../../../../common/components/modalWindows/ModalWindow";
 import styleModal from "./AddPackModal.module.scss";
-import {AppRootActionsType, AppRootStateType, useAppDispatch, useAppSelector} from "../../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../../bll/store";
 import {addNewPackTC, updatePackTC} from "../../../../bll/packsReducer";
 import stroke from "../../../../assets/image/Edit.svg"
 import style from "../../../../components/packs/modalsPacks/addEditPackModal/AddPackModal.module.scss";
 import styleBtn from "../../../../common/components/button/SuperButton.module.scss"
-import {convertFileToBase64, uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
+import {uploadHandler} from "../../../../common/utils/workWithImages/uploadImageFileHandler";
 import packDefCover from "../../../../assets/image/defaultCover.svg";
-import {ThunkDispatch} from "redux-thunk";
-import {updateUserTC} from "../../../../bll/profileReducer";
-import {setAppErrorAC} from "../../../../bll/appReducer";
+
 
 type AddPackModalPropsType = {
     id?: string

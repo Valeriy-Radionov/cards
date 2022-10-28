@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useFormik} from "formik";
 import style from "../login/Login.module.scss";
 import SuperInputText from "../../../common/components/superInput/SuperInputText";
@@ -8,12 +8,19 @@ import SuperButton from "../../../common/components/button/SuperButton";
 import {Login} from "../login/Login";
 import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {registrationTC} from "../../../bll/authReducer";
+import {validatorPassword} from "../../../common/utils/errors-utils";
 
 
-type FormikErrorType = {
+export type FormikErrorType = {
     email?: string
     password?: string
     confirmedPassword?: string
+}
+
+export type FormikInitialValues = {
+    email: string
+    password: string
+    confirmedPassword: string
 }
 export const Registration = () => {
 
@@ -21,30 +28,25 @@ export const Registration = () => {
     let isRegistrationSuccessful = useAppSelector(state => state.auth.isRegistrationSuccessful)
     let dispatch = useAppDispatch
 
+    const [togglePassword, setTogglePassword] = useState<boolean>(false)
+    const classNameBtn = togglePassword ? style.passwordHidden : style.password
+
+    const onClickShowPassword = () => {
+        setTogglePassword(!togglePassword)
+    }
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
-            confirmedPassword: ""
+            confirmedPassword: "",
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
-            if (!values.email) {
-                errors.email = "required"
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
-            }
-
-            if (!values.password) {
-                errors.password = "required"
-            } else if (values.password.length < 7) {
-                errors.password = "Password must be more 7 symbols"
-            }
-
+            validatorPassword(values, errors)
             if (!values.confirmedPassword) {
                 errors.confirmedPassword = "required"
-            } else if (values.confirmedPassword.length < 7) {
-                errors.confirmedPassword = "Password must be more 7 symbols"
+            } else if (values.confirmedPassword.length < 8) {
+                errors.confirmedPassword = "Password must be more 8 symbols"
             } else if (values.password !== values.confirmedPassword) {
                 errors.confirmedPassword = "password does not match"
             }
@@ -77,20 +79,22 @@ export const Registration = () => {
                         {/*password*/}
                         <div className={style.inputForm}>
                             <label>password</label>
-                            <SuperInputText
-                                type={"password"}
-                                {...formik.getFieldProps('password')}
-                            />
+                            <div className={style.wrapperBtn}>
+                                <input
+                                    type={togglePassword ? "text" : "password"} {...formik.getFieldProps("password")}/>
+                                <button type={"button"} className={classNameBtn} onClick={onClickShowPassword}></button>
+                            </div>
                             {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>
                                 {formik.errors.password}</div>}
                         </div>
                         {/*confirm password*/}
                         <div className={style.inputForm}>
                             <label>confirm password</label>
-                            <SuperInputText
-                                type={"password"}
-                                {...formik.getFieldProps('confirmedPassword')}
-                            />
+                            <div className={style.wrapperBtn}>
+                                <input
+                                    type={togglePassword ? "text" : "password"} {...formik.getFieldProps("confirmedPassword")}/>
+                                <button type={"button"} className={classNameBtn} onClick={onClickShowPassword}></button>
+                            </div>
                             {formik.touched.confirmedPassword && formik.errors.confirmedPassword &&
                                 <div style={{color: 'red'}}>
                                     {formik.errors.confirmedPassword}</div>}
