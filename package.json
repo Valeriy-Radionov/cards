@@ -3,6 +3,11 @@
   "homepage": "https://Valeriy-Radionov.github.io/cards",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "*": {
+      "target": "https://neko-back.herokuapp.com/2.0/"
+    }
+  },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
